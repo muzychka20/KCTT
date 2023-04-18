@@ -18,12 +18,12 @@
     <ClCompile Include="KCTT.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="event.cpp">
+    <ClCompile Include="Event.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="event.h">
+    <ClInclude Include="Event.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
