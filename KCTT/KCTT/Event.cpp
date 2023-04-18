@@ -1,6 +1,6 @@
-#include "event.h"
+#include "Event.h"
 using namespace std;
 
-int event::getId() {
+int Event::getId() {
 	return this->id;
 }

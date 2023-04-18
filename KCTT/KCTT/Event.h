@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-class event {
+class Event {
 private:
 	int id;
 public:
