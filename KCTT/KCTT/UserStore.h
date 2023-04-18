@@ -4,4 +4,4 @@ class EventsStore
 {
  public:
     void events();
-}
+};
