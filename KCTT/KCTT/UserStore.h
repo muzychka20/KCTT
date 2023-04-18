@@ -1,7 +1,7 @@
 #pragma once
 
-class EventsStore
+class UserStore
 {
  public:
-    void events();
+    void users();
 };
