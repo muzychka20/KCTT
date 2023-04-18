@@ -5,22 +5,22 @@ Ticket::Ticket(std::string row, std::string place, bool isBooked)
 {
 }
 
-std::string Ticket::getCustomer()
+void Ticket::getCustomer()
 {
 }
 
-std::string Ticket::setCustomer()
+void Ticket::setCustomer()
 {
 }
 
-std::string Ticket::getEvent()
+void Ticket::getEvent()
 {
 }
 
-std::string Ticket::setEvent()
+void Ticket::setEvent()
 {
 }
 
-std::string Ticket::getId()
+void Ticket::getId()
 {
 }
