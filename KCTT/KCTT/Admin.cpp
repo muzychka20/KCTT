@@ -145,6 +145,15 @@ void Admin::DeleteCustomer(string id)
 
 void Admin::EditCustomer(string id)
 {
+    string newValue;
+    cout << "New name: ";
+    cin >> newValue;
+    for (size_t i = 0; i < UserStore::users.size(); i++) {
+        if (UserStore::users.at(i)->GetId() == id) {
+            UserStore::users.at(i)->SetName(newValue);
+            break;
+        }
+    }
 }
 
 void Admin::PrintMenu(char* action)
@@ -155,15 +164,70 @@ void Admin::PrintMenu(char* action)
     cout << "4. Add new event" << endl;
     cout << "5. Update event" << endl;
     cout << "6. Delete event" << endl;
-    cout << "7. Add ticket to event" << endl;
-    cout << "8. Update ticket by id" << endl;
-    cout << "9. Delete ticket" << endl;
-
-    cout << "[x] - Delete all tickets" << endl;
-    cout << "[y] - Delete all events" << endl;
-    cout << "[z] - Delete all users" << endl;
+    cout << "7. Add ticket to event" << endl;    
+    cout << "8. Delete ticket" << endl;
+    cout << "9. Delete all tickets" << endl;
 }
 
 void Admin::ActivateMenu(char* action)
 {
+    string name, login, password,role, id;
+    system("cls");
+    switch (*action)
+    {
+    case '1':
+        // add new customer
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter login: ";
+        cin >> login;
+        cout << "Enter password: ";
+        cin >> password;
+        UserStore::users.push_back(new Customer(name, login, password));
+        // id role ?
+        break;
+    case '2':
+        cout << "Enter id: ";
+        cin >> id;
+        EditCustomer(id);
+        break;
+    case '3':
+        cout << "Enter id: ";
+        cin >> id;
+        DeleteCustomer(id);
+        cout << "Customer has been deleted" << endl;
+        break;
+
+    case '4':
+        // add new event        
+        break;
+
+    case '5':
+        cout << "Enter id: ";
+        cin >> id;
+        EditEvent(id);
+        break;
+
+    case '6':
+        cout << "Enter id: ";
+        cin >> id;
+        DeleteEvent(id);
+        break;
+
+    case '7':
+        // add ticket
+        break;
+
+    case '8':
+        cout << "Enter id: ";
+        cin >> id;
+        DeleteTicket(id);
+        break;
+
+    case '9':
+        DeleteAllTickets();
+        cout << "All tickets have beeen deleted!" << endl;
+        break;
+    }
+    system("pause");
 }
