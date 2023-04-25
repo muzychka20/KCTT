@@ -6,7 +6,7 @@
 using namespace std;
 
 Admin::Admin(std::string name, std::string login, std::string password) : User(name, login, password)
-{
+{    
 }
 
 void Admin::DeleteEvent(string id)
@@ -27,7 +27,31 @@ void Admin::AddEvent(Event event)
 
 void Admin::EditEvent(string id)
 {
-
+    string field, newValue;
+    cout << "Which field to edit?: ";
+    cin >> field;
+    cout << "New value: ";
+    cin >> newValue;
+    for (size_t i = 0; i < EventStore::events.size(); i++) {
+        if (EventStore::events[i].getId() == id) {
+            if (field == "date") {
+                EventStore::events[i].date = newValue;
+            }
+            else if (field == "start time") {
+                EventStore::events[i].startTime = newValue;
+            }
+            else if (field == "end time") {
+                EventStore::events[i].endTime = newValue;
+            }
+            else if (field == "name") {
+                EventStore::events[i].name = newValue;
+            }
+            else if (field == "status") {
+                EventStore::events[i].status = newValue;
+            }            
+            break;
+        }
+    }
 }
 
 void Admin::DeleteAllTicketsByEvent(string eventId)

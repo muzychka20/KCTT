@@ -8,10 +8,10 @@ private:
 	string id;
 public:
 	string name;
-	int startTime;
-	int endTime;
-	int date;
-	int status;
+	string startTime;
+	string endTime;
+	string date;
+	string status;
 
 	string getId();
 };
