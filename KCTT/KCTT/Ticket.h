@@ -11,7 +11,7 @@ private:
 	std::string Customer;
 public:
 	Ticket(std::string row, std::string place, bool isBooked);
-	void getCustomer();
+	string getCustomer();
 	void setCustomer();
 	string getEvent();
 	void setEvent();

@@ -124,11 +124,23 @@ void Admin::DeleteTicket(std::string ticketId)
 
 void Admin::AddCustomer(Customer customer)
 {
-    //UserStore::users.push_back();
+    UserStore::users.push_back(&customer);
 }
 
 void Admin::DeleteCustomer(string id)
 {
+    for (size_t i = 0; i < UserStore::users.size(); i++) {
+        if (UserStore::users.at(i)->GetId() == id) {
+            
+            for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
+                if (UserStore::users.at(i)->GetId() == TicketStore::tickets[i].getCustomer()){
+                    DeleteTicket(TicketStore::tickets[i].getId());
+                }
+            }            
+            UserStore::users.erase(UserStore::users.begin() + i);
+            break;
+        }
+    }    
 }
 
 void Admin::EditCustomer(string id)
@@ -137,6 +149,19 @@ void Admin::EditCustomer(string id)
 
 void Admin::PrintMenu(char* action)
 {
+    cout << "1. Add new customer account" << endl;
+    cout << "2. Update customer account" << endl;
+    cout << "3. Delete customer account" << endl;
+    cout << "4. Add new event" << endl;
+    cout << "5. Update event" << endl;
+    cout << "6. Delete event" << endl;
+    cout << "7. Add ticket to event" << endl;
+    cout << "8. Update ticket by id" << endl;
+    cout << "9. Delete ticket" << endl;
+
+    cout << "[x] - Delete all tickets" << endl;
+    cout << "[y] - Delete all events" << endl;
+    cout << "[z] - Delete all users" << endl;
 }
 
 void Admin::ActivateMenu(char* action)

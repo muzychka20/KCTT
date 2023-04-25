@@ -5,8 +5,9 @@ Ticket::Ticket(std::string row, std::string place, bool isBooked)
 {
 }
 
-void Ticket::getCustomer()
+string Ticket::getCustomer()
 {
+	return this->Customer;
 }
 
 void Ticket::setCustomer()
