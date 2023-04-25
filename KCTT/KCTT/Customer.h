@@ -10,9 +10,9 @@ class Customer : public User
 {
 public:
 	vector<Ticket> boughtTickets;
-	Customer(string name, string password, string login);
-	void PrintMenu() override;
-	void ActivateMenu() override;
+	Customer(std::string name, std::string login, std::string password);
+	void PrintMenu(char *action) override;
+	void ActivateMenu(char *action) override;
 	void ShowTickets() override;
 	void ShowAllEvents() override;
 	void AddTicket(Ticket ticket) override;

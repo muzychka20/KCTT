@@ -1,14 +1,14 @@
 #include "Customer.h"
 
-Customer::Customer(string name, string password, string login) : User(name, password, login)
+Customer::Customer(std::string name, std::string login, std::string password) : User(name, login, password)
 {
 }
 
-void Customer::PrintMenu()
+void Customer::PrintMenu(char *action)
 {
 }
 
-void Customer::ActivateMenu()
+void Customer::ActivateMenu(char *action)
 {
 }
 

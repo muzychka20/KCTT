@@ -2,7 +2,7 @@
 #include "Admin.h"
 using namespace std;
 
-Admin::Admin(string name, string password, string login) : User(name, password, login)
+Admin::Admin(std::string name, std::string login, std::string password) : User(name, login, password)
 {
 }
 
@@ -38,11 +38,11 @@ void Admin::EditCustomer(string id)
 {
 }
 
-void Admin::PrintMenu()
+void Admin::PrintMenu(char *action)
 {
 }
 
-void Admin::ActivateMenu()
+void Admin::ActivateMenu(char *action)
 {
 }
 
