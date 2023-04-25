@@ -1,5 +1,4 @@
+#include "User.h"
 #include "UserStore.h"
 
-void UserStore::users()
-{
-}
+std::vector<User *> UserStore::users = {};

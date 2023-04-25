@@ -130,7 +130,7 @@
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Event.cpp" />
-    <ClCompile Include="EventsStore.cpp" />
+    <ClCompile Include="EventStore.cpp" />
     <ClCompile Include="KCTT.cpp" />
     <ClCompile Include="Ticket.cpp" />
     <ClCompile Include="TicketStore.cpp" />
@@ -141,7 +141,7 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Event.h" />
-    <ClInclude Include="EventsStore.h" />
+    <ClInclude Include="EventStore.h" />
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="TicketStore.h" />
     <ClInclude Include="User.h" />

@@ -1,5 +1,4 @@
 #include "TicketStore.h"
+#include "Ticket.h"
 
-void TicketStore::tickets()
-{
-}
+std::vector<Ticket> TicketStore::tickets = {};

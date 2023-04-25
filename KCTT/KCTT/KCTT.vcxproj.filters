@@ -33,7 +33,7 @@
     <ClCompile Include="Ticket.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="EventsStore.cpp">
+    <ClCompile Include="EventStore.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="UserStore.cpp">
@@ -59,7 +59,7 @@
     <ClInclude Include="Ticket.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="EventsStore.h">
+    <ClInclude Include="EventStore.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="UserStore.h">
