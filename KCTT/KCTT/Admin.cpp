@@ -81,8 +81,28 @@ void Admin::ShowTickets()
 void Admin::ShowAllEvents()
 {
     for (size_t i = 0; i < EventStore::events.size(); i++) {
-        cout << EventStore::events[i].ShowEvent() << endl;
+        EventStore::events[i].ShowEvent();
         cout << "----------" << endl;
+    }
+}
+
+void Admin::FindEventByDate(std::string date)
+{
+    for (size_t i = 0; i < EventStore::events.size(); i++) {
+        if (EventStore::events[i].date == date) {
+            EventStore::events[i].ShowEvent();
+            break;
+        }
+    }
+}
+
+void Admin::FindEventByName(std::string name)
+{
+    for (size_t i = 0; i < EventStore::events.size(); i++) {
+        if (EventStore::events[i].name == name) {
+            EventStore::events[i].ShowEvent();
+            break;
+        }
     }
 }
 
@@ -120,13 +140,5 @@ void Admin::PrintMenu(char* action)
 }
 
 void Admin::ActivateMenu(char* action)
-{
-}
-
-void Admin::FindEventByDate(std::string date)
-{
-}
-
-void Admin::FindEventByName(std::string name)
 {
 }
