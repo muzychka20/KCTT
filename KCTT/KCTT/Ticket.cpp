@@ -22,6 +22,7 @@ void Ticket::setEvent()
 {
 }
 
-void Ticket::getId()
+string Ticket::getId()
 {
+	return this->id;
 }

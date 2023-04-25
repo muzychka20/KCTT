@@ -15,5 +15,5 @@ public:
 	void setCustomer();
 	string getEvent();
 	void setEvent();
-	void getId();
+	string getId();
 };

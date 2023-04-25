@@ -70,6 +70,38 @@ void Admin::DeleteAllTickets()
     TicketStore::tickets.clear();
 }
 
+void Admin::ShowTickets()
+{
+    for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
+        cout << TicketStore::tickets[i].ShowTicket() << endl;
+        cout << "----------" << endl;
+    }
+}
+
+void Admin::ShowAllEvents()
+{
+    for (size_t i = 0; i < EventStore::events.size(); i++) {
+        cout << EventStore::events[i].ShowEvent() << endl;
+        cout << "----------" << endl;
+    }
+}
+
+void Admin::AddTicket(Ticket ticket)
+{
+    TicketStore::tickets.push_back(ticket); 
+}
+
+void Admin::DeleteTicket(std::string ticketId)
+{
+    for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
+        if (TicketStore::tickets[i].getId() == ticketId) {
+            TicketStore::tickets.erase(TicketStore::tickets.begin() + i);
+            break;
+        }
+    }
+}
+
+
 void Admin::AddCustomer(Customer customer)
 {
     //UserStore::users.push_back();
@@ -83,27 +115,11 @@ void Admin::EditCustomer(string id)
 {
 }
 
-void Admin::PrintMenu(char *action)
+void Admin::PrintMenu(char* action)
 {
 }
 
-void Admin::ActivateMenu(char *action)
-{
-}
-
-void Admin::ShowTickets()
-{
-}
-
-void Admin::ShowAllEvents()
-{
-}
-
-void Admin::AddTicket(Ticket ticket)
-{
-}
-
-void Admin::DeleteTicket(std::string ticketId)
+void Admin::ActivateMenu(char* action)
 {
 }
 
