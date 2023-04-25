@@ -1,4 +1,5 @@
 #include "./User.h"
+#include "Ticket.h"
 
 User::User(std::string name, std::string login, std::string password)
 {
