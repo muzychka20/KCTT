@@ -1,6 +1,6 @@
 #include "Event.h"
 using namespace std;
 
-int Event::getId() {
+string Event::getId() {
 	return this->id;
 }

@@ -13,7 +13,7 @@ public:
 	Ticket(std::string row, std::string place, bool isBooked);
 	void getCustomer();
 	void setCustomer();
-	void getEvent();
+	string getEvent();
 	void setEvent();
 	void getId();
 };

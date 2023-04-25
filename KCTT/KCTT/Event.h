@@ -5,7 +5,7 @@ using namespace std;
 
 class Event {
 private:
-	int id;
+	string id;
 public:
 	string name;
 	int startTime;
@@ -13,5 +13,5 @@ public:
 	int date;
 	int status;
 
-	int getId();
+	string getId();
 };

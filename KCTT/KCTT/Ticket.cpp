@@ -13,8 +13,9 @@ void Ticket::setCustomer()
 {
 }
 
-void Ticket::getEvent()
+string Ticket::getEvent()
 {
+	return this->Event;
 }
 
 void Ticket::setEvent()
