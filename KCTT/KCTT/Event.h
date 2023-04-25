@@ -14,4 +14,6 @@ public:
 	string status;
 
 	string getId();
+
+	void ShowEvent();
 };
