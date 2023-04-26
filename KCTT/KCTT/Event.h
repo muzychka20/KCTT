@@ -7,6 +7,7 @@ class Event {
 private:
 	string id;
 public:
+	Event();
 	string name;
 	string startTime;
 	string endTime;

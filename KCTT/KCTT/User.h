@@ -8,6 +8,8 @@ private:
   std::string name;
   std::string login;
   std::string password;
+
+protected:
   std::string role;
 
 public:

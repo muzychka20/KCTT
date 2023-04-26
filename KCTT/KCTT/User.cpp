@@ -3,8 +3,12 @@
 #include <iostream>
 #include <ostream>
 
+int uuid = 0;
+
 User::User(std::string name, std::string login, std::string password)
 {
+  uuid++;
+	this->id = "t" + std::to_string(uuid);
   this->name = name;
   this->login = login;
   this->password = password;
