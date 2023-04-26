@@ -122,10 +122,10 @@
         <mxCell id="mET-laxzgPLThdWNp_bz-4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
           <mxGeometry y="156" width="180" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="mET-laxzgPLThdWNp_bz-5" value="+ FindEventByDate(string)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
+        <mxCell id="mET-laxzgPLThdWNp_bz-5" value="+ FindEventByDate(std::string)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
           <mxGeometry y="164" width="180" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="mET-laxzgPLThdWNp_bz-14" value="+ FindEventByName(string)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
+        <mxCell id="mET-laxzgPLThdWNp_bz-14" value="+ FindEventByName(std::string)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
           <mxGeometry y="190" width="180" height="26" as="geometry" />
         </mxCell>
         <mxCell id="mET-laxzgPLThdWNp_bz-6" value="+ ShowAllEvents()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
@@ -146,13 +146,13 @@
         <mxCell id="mET-laxzgPLThdWNp_bz-26" value="+ activateMenu()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
           <mxGeometry y="346" width="180" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="mET-laxzgPLThdWNp_bz-15" value="+ getLogin()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
+        <mxCell id="mET-laxzgPLThdWNp_bz-15" value="+ CompareLogin(std::string login)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
           <mxGeometry y="372" width="180" height="26" as="geometry" />
         </mxCell>
         <mxCell id="mET-laxzgPLThdWNp_bz-16" value="+ setLogin()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
           <mxGeometry y="398" width="180" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="mET-laxzgPLThdWNp_bz-17" value="+ getPassword()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
+        <mxCell id="mET-laxzgPLThdWNp_bz-17" value="+ ComparePassword(std::string login)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">
           <mxGeometry y="424" width="180" height="26" as="geometry" />
         </mxCell>
         <mxCell id="mET-laxzgPLThdWNp_bz-18" value="+ setPassword()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mET-laxzgPLThdWNp_bz-1" vertex="1">

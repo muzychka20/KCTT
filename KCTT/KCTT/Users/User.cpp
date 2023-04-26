@@ -1,5 +1,5 @@
 #include "./User.h"
-#include "Ticket.h"
+#include "../Elements/Ticket.h"
 #include <iostream>
 #include <ostream>
 
@@ -18,16 +18,6 @@ User::User(std::string name, std::string login, std::string password)
 std::string User::GetId()
 {
   return this->id;
-}
-
-std::string User::GetLogin()
-{
-  return this->login;
-}
-
-std::string User::GetPassword()
-{
-  return this->password;
 }
 
 std::string User::GetName()
@@ -53,6 +43,16 @@ void User::SetLogin(std::string newLogin)
 void User::SetPassword(std::string newPassword)
 {
   this->password = newPassword;
+}
+
+bool User::CompareLogin(std::string login)
+{
+  return this->login == login;
+}
+
+bool User::ComparePassword(std::string password)
+{
+  return this->password == password;
 }
 
 void User::PrintMenu(char *action)
@@ -103,11 +103,4 @@ void User::FindEventByDate(std::string date)
 void User::FindEventByName(std::string name)
 {
   std::cout << "User.FindEventByName() not overloaded!" << std::endl;
-}
-
-void User::ShowUser()
-{
-    cout << "Name: " << this->name << endl;
-    cout << "Login: " << this->login << endl;
-    cout << "Role: " << this->role << endl;
 }

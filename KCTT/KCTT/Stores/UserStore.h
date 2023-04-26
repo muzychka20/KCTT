@@ -1,9 +1,10 @@
 #pragma once
+#include "../Users/User.h"
+#include <iostream>
 #include <vector>
-#include "./User.h"
 
-
-class UserStore {
+class UserStore
+{
 public:
   static std::vector<User *> users;
 };

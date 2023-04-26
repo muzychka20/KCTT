@@ -1,8 +1,9 @@
 #pragma once
+#include "../Elements/Ticket.h"
 #include <iostream>
-#include "./Ticket.h"
 
-class User {
+class User
+{
 private:
   std::string id;
   std::string name;
@@ -15,13 +16,13 @@ protected:
 public:
   User(std::string name, std::string login, std::string password);
   std::string GetId();
-  std::string GetLogin();
-  std::string GetPassword();
-  std::string GetName();
   std::string GetRole();
+  std::string GetName();
   void SetName(std::string newName);
   void SetLogin(std::string newLogin);
   void SetPassword(std::string newPassword);
+  bool CompareLogin(std::string login);
+  bool ComparePassword(std::string password);
   virtual void PrintMenu(char *action);
   virtual void ActivateMenu(char *action);
   virtual void ShowTickets();
@@ -30,5 +31,4 @@ public:
   virtual void DeleteTicket(std::string ticketId);
   virtual void FindEventByDate(std::string date);
   virtual void FindEventByName(std::string name);
-  void ShowUser();
 };
