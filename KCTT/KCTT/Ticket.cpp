@@ -1,15 +1,15 @@
 #include "Ticket.h"
 #include "Event.h"
 
-int uuid = 0;
+int tid = 0;
 
 Ticket::Ticket(std::string row, std::string place, bool isBooked)
 {
 	this->row = row;
 	this->place = place;
 	this->isBooked = isBooked;
-	uuid++;
-	this->id = "t" + std::to_string(uuid);
+	tid++;
+	this->id = "t" + std::to_string(tid);
 }
 
 string Ticket::getCustomerId()

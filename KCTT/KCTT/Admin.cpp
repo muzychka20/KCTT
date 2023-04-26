@@ -158,7 +158,7 @@ void Admin::EditCustomer(string id)
 }
 
 void Admin::PrintMenu(char* action)
-{
+{    
     cout << "1. Add new customer account" << endl;
     cout << "2. Update customer account" << endl;
     cout << "3. Delete customer account" << endl;
@@ -168,12 +168,12 @@ void Admin::PrintMenu(char* action)
     cout << "7. Add ticket to event" << endl;    
     cout << "8. Delete ticket" << endl;
     cout << "9. Delete all tickets" << endl;
+    cin >> *action;
 }
 
 void Admin::ActivateMenu(char* action)
 {
-    string name, login, password,role, id;
-    system("cls");
+    string name, login, password,role, id;    
     switch (*action)
     {
     case '1':

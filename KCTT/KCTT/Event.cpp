@@ -2,12 +2,12 @@
 #include <string>
 using namespace std;
 
-int uuid = 0;
+int eid = 0;
 
 Event::Event()
 {
-	uuid++;
-	this->id = "t" + std::to_string(uuid);
+	eid++;
+	this->id = "t" + std::to_string(eid);
 }
 
 string Event::getId() {
