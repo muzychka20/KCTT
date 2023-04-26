@@ -39,13 +39,13 @@ void Customer::ActivateMenu(char *action)
         ShowAllEvents();
         cout << "Which event would you like to attend. Enter the name of the event: ";
         cin >> eventName;
-        FindEventByName(eventName);
     
 
         bool eventExists = false;
         for (size_t i = 0; i < EventStore::events.size(); ++i)
         {
             if (EventStore::events[i].name == eventName) {
+                EventStore::events[i].ShowEvent();
                 eventExists = true;
                 break;
             }
@@ -56,22 +56,21 @@ void Customer::ActivateMenu(char *action)
             cout << "The event exists.Do you want to buy a ticket?(1/0): ";
             cin >> choose;
             if (choose == 1) {
-                int numTickets = 0;
+              
                 cout << "Choose the row: ";
                 cin >> row;
                 cout << "Choose the place: ";
                 cin >> place;
 
-                bool isBooked = false;
-                cout << "Do you want to book this place? (1/0): ";
-                cin >> isBooked;
-
-                cout << "How many tickets do you want to buy? ";
-                cin >> numTickets;
-                for (int i = 0; i < TicketStore::tickets.size(); ++i) {
-                    Ticket ticket(row, place, isBooked);
-                    AddTicket(ticket);
-                }
+                for (int i = 0; i < TicketStore::tickets.size(); ++i)
+                {
+                    if (TicketStore::tickets[i].getRow() == row && TicketStore::tickets[i].getPlace() == place)
+                    {
+                        TicketStore::tickets[i].Booking();
+                        boughtTickets.push_back(TicketStore::tickets[i]);
+                        break;
+                    }
+                }             
                 
             };
             if (choose == 0) cout << "You don't want to buy a ticket.";
