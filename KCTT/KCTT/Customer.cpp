@@ -107,7 +107,7 @@ void Customer::ActivateMenu(char *action)
     case '3': {
         cout << "When would you like to attend event. Enter the date of the event: ";
         cin >> eventDate;
-        FindEventByName(eventDate);
+        FindEventByDate(eventDate);
 
         bool eventExists = false;
         for (size_t i = 0; i < EventStore::events.size(); i++)
