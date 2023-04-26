@@ -62,10 +62,14 @@ void Customer::ActivateMenu(char *action)
                 cout << "Choose the place: ";
                 cin >> place;
 
+                bool isBooked = false;
+                cout << "Do you want to book this place? (1/0): ";
+                cin >> isBooked;
+
                 cout << "How many tickets do you want to buy? ";
                 cin >> numTickets;
                 for (int i = 0; i < TicketStore::tickets.size(); ++i) {
-                    Ticket ticket(row, place, eventExists);
+                    Ticket ticket(row, place, isBooked);
                     AddTicket(ticket);
                 }
                 
