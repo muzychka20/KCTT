@@ -153,7 +153,7 @@ void Customer::ActivateMenu(char *action)
 void Customer::ShowTickets()
 {
     for (size_t i = 0; i < boughtTickets.size(); i++) {
-        cout << boughtTickets[i].ShowTicket() << endl;
+        boughtTickets[i].ShowTicket();
         cout << "----------" << endl;
     }
 }
