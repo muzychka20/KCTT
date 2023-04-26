@@ -78,6 +78,19 @@ Ticket *TicketStore::Get(size_t index)
   return &this->ticket[index];
 }
 
+Ticket *TicketStore::FindById(std::string id)
+{
+  for (size_t index = 0; index < this->GetSize(); index++)
+  {
+    if (this->ticket[index].GetId() == id)
+    {
+      return &this->ticket[index];
+    }
+  }
+
+  return nullptr;
+}
+
 std::vector<Ticket> TicketStore::FindByRow(std::string row)
 {
   std::vector<Ticket> found;

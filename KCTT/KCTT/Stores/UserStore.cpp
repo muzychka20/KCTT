@@ -51,6 +51,8 @@ User *UserStore::FindById(std::string id)
       return this->users[index];
     }
   }
+
+  return nullptr;
 }
 
 User *UserStore::FindByLogin(std::string login)
@@ -62,4 +64,6 @@ User *UserStore::FindByLogin(std::string login)
       return this->users[index];
     }
   }
+
+  return nullptr;
 }

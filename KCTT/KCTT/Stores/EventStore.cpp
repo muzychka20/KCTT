@@ -66,6 +66,19 @@ Event *EventStore::Get(size_t index)
   return &this->events[index];
 }
 
+Event *EventStore::FindById(std::string id)
+{
+  for (size_t index = 0; index < this->GetSize(); index++)
+  {
+    if (this->events[index].GetId() == id)
+    {
+      return &this->events[index];
+    }
+  }
+
+  return nullptr;
+}
+
 std::vector<Event> EventStore::FindByName(std::string name)
 {
   std::vector<Event> found;
