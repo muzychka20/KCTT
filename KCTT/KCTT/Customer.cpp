@@ -102,6 +102,7 @@ void Customer::ActivateMenu(char *action)
         else {
             cout << "The event does not exist." << endl;
         }
+        break;
     }
     case '3': {
         cout << "When would you like to attend event. Enter the date of the event: ";
@@ -122,10 +123,11 @@ void Customer::ActivateMenu(char *action)
         else {
             cout << "The event does not exist at this day." << endl;
         }
-
+        break;
     }
     case '4': {
         ShowAllEvents();
+        break;
     }
     case '5': {
         if (TicketStore::tickets.size() == 0) {
@@ -138,6 +140,7 @@ void Customer::ActivateMenu(char *action)
             ShowTickets();
             cout << endl;
         }
+        break;
     }
     case '6': {
         cout << "Enter id: ";
