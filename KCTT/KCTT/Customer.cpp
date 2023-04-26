@@ -35,7 +35,7 @@ void Customer::ActivateMenu(char *action)
     system("cls");
     switch (*action)
     {
-    case 1: {
+    case '1': {
         ShowAllEvents();
         cout << "Which event would you like to attend. Enter the name of the event: ";
         cin >> eventName;
@@ -83,7 +83,7 @@ void Customer::ActivateMenu(char *action)
         break;
         
     }
-    case 2: {  
+    case '2': {  
         cout << "Which event would you like to find. Enter the name of the event: ";
         cin >> eventName;
         FindEventByName(eventName);
@@ -103,7 +103,7 @@ void Customer::ActivateMenu(char *action)
             cout << "The event does not exist." << endl;
         }
     }
-    case 3: {
+    case '3': {
         cout << "When would you like to attend event. Enter the date of the event: ";
         cin >> eventDate;
         FindEventByName(eventDate);
@@ -124,10 +124,10 @@ void Customer::ActivateMenu(char *action)
         }
 
     }
-    case 4: {
+    case '4': {
         ShowAllEvents();
     }
-    case 5: {
+    case '5': {
         if (TicketStore::tickets.size() == 0) {
             cout << "No tickets have been ordered yet." << endl;
             return;
@@ -139,7 +139,7 @@ void Customer::ActivateMenu(char *action)
             cout << endl;
         }
     }
-    case 6: {
+    case '6': {
         cout << "Enter id: ";
         cin >> id;
         DeleteTicket(id);
