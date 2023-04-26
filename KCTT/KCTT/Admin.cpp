@@ -73,9 +73,14 @@ void Admin::DeleteAllTickets()
 
 void Admin::ShowTickets()
 {
-    for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
-        TicketStore::tickets[i].ShowTicket();
-        cout << "----------" << endl;
+    if (TicketStore::tickets.empty()) {
+        cout << "Tickets is empty!" << endl;
+    }
+    else {
+        for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
+            TicketStore::tickets[i].ShowTicket();
+            cout << "----------" << endl;
+        }
     }
 }
 
@@ -180,6 +185,7 @@ void Admin::PrintMenu(char* action)
     cout << "6. Delete event" << endl;
     cout << "7. Add ticket to event" << endl;    
     cout << "8. Delete ticket" << endl;
+    cout << "9. Show tickets" << endl;
     cout << "[y] Show events" << endl;
     cout << "[u] Show users" << endl;
     cout << "[x] Delete all tickets" << endl;
@@ -248,6 +254,9 @@ void Admin::ActivateMenu(char* action)
         cin >> id;
         DeleteTicket(id);
         break;
+
+    case '9':
+        ShowTickets();
 
     case 'x':
         DeleteAllTickets();
