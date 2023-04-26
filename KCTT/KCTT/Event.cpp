@@ -1,5 +1,14 @@
 #include "Event.h"
+#include <string>
 using namespace std;
+
+int uuid = 0;
+
+Event::Event()
+{
+	uuid++;
+	this->id = "t" + std::to_string(uuid);
+}
 
 string Event::getId() {
 	return this->id;
