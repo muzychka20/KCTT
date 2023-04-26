@@ -277,6 +277,7 @@ void Admin::ActivateMenu(char* action)
     }
     case '9': {
         ShowTickets();
+        break;
     }
     case 'x': {
         DeleteAllTickets();
