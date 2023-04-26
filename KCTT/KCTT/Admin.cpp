@@ -87,7 +87,7 @@ void Admin::ShowTickets()
 void Admin::ShowAllEvents()
 {
     if (EventStore::events.empty()) {
-        cout << "Users is empty!" << endl;
+        cout << "Events is empty!" << endl;
     } 
     else {
         for (size_t i = 0; i < EventStore::events.size(); i++) {
