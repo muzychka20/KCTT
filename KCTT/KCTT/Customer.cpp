@@ -62,8 +62,6 @@ void Customer::ActivateMenu(char *action)
                 cout << "Choose the place: ";
                 cin >> place;
 
-                //тут должна быть проверка на то забронирован ли билет
-
                 cout << "How many tickets do you want to buy? ";
                 cin >> numTickets;
                 for (int i = 0; i < TicketStore::tickets.size(); ++i) {
