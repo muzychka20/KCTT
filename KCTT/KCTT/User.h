@@ -30,4 +30,5 @@ public:
   virtual void DeleteTicket(std::string ticketId);
   virtual void FindEventByDate(std::string date);
   virtual void FindEventByName(std::string name);
+  void ShowUser();
 };

@@ -1,5 +1,6 @@
 #include "./User.h"
 #include "Ticket.h"
+#include "Userstore.h"
 #include <iostream>
 #include <ostream>
 
@@ -103,4 +104,11 @@ void User::FindEventByDate(std::string date)
 void User::FindEventByName(std::string name)
 {
   std::cout << "User.FindEventByName() not overloaded!" << std::endl;
+}
+
+void User::ShowUser()
+{
+    cout << "Name: " << this->name << endl;
+    cout << "Login: " << this->login << endl;
+    cout << "Role: " << this->role << endl;
 }
