@@ -58,7 +58,7 @@ void Admin::EditEvent(string id)
 void Admin::DeleteAllTicketsByEvent(string eventId)
 {
     for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
-        if (TicketStore::tickets[i].getEvent() == eventId) {
+        if (TicketStore::tickets[i].getEventId() == eventId) {
             TicketStore::tickets.erase(TicketStore::tickets.begin() + i);
             i--;
             break;
@@ -74,7 +74,7 @@ void Admin::DeleteAllTickets()
 void Admin::ShowTickets()
 {
     for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
-        cout << TicketStore::tickets[i].ShowTicket() << endl;
+        TicketStore::tickets[i].ShowTicket();
         cout << "----------" << endl;
     }
 }
@@ -134,7 +134,7 @@ void Admin::DeleteCustomer(string id)
         if (UserStore::users.at(i)->GetId() == id) {
             
             for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
-                if (UserStore::users.at(i)->GetId() == TicketStore::tickets[i].getCustomer()){
+                if (UserStore::users.at(i)->GetId() == TicketStore::tickets[i].getCustomerId()){
                     DeleteTicket(TicketStore::tickets[i].getId());
                 }
             }            
