@@ -17,7 +17,8 @@ public:
 	void DeleteAllTickets();
 	void AddCustomer(Customer customer);
 	void DeleteCustomer(string id);
-	void EditCustomer(string id);
+	void EditCustomer(string id);	
+	void ShowUsers();
 	void PrintMenu(char *action) override;
 	void ActivateMenu(char *action) override;
 	void ShowTickets() override;

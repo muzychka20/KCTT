@@ -81,9 +81,14 @@ void Admin::ShowTickets()
 
 void Admin::ShowAllEvents()
 {
-    for (size_t i = 0; i < EventStore::events.size(); i++) {
-        EventStore::events[i].ShowEvent();
-        cout << "----------" << endl;
+    if (EventStore::events.empty()) {
+        cout << "Users is empty!" << endl;
+    } 
+    else {
+        for (size_t i = 0; i < EventStore::events.size(); i++) {
+            EventStore::events[i].ShowEvent();
+            cout << "----------" << endl;
+        }
     }
 }
 
@@ -157,6 +162,14 @@ void Admin::EditCustomer(string id)
     }
 }
 
+void Admin::ShowUsers()
+{
+    for (size_t i = 0; i < UserStore::users.size(); i++) {
+        UserStore::users.at(i)->ShowUser();
+        cout << "-----" << endl;
+    }
+}
+
 void Admin::PrintMenu(char* action)
 {    
     cout << "1. Add new customer account" << endl;
@@ -167,7 +180,9 @@ void Admin::PrintMenu(char* action)
     cout << "6. Delete event" << endl;
     cout << "7. Add ticket to event" << endl;    
     cout << "8. Delete ticket" << endl;
-    cout << "9. Delete all tickets" << endl;
+    cout << "[e] Show events" << endl;
+    cout << "[u] Show users" << endl;
+    cout << "[x] Delete all tickets" << endl;
     cin >> *action;
 }
 
@@ -176,16 +191,14 @@ void Admin::ActivateMenu(char* action)
     string name, login, password,role, id;    
     switch (*action)
     {
-    case '1':
-        // add new customer
+    case '1':        
         cout << "Enter name: ";
         cin >> name;
         cout << "Enter login: ";
         cin >> login;
         cout << "Enter password: ";
-        cin >> password;
-        UserStore::users.push_back(new Customer(name, login, password));
-        // id role ?
+        cin >> password;                      
+        UserStore::users.push_back(new Customer(name, login, password));        
         break;
     case '2':
         cout << "Enter id: ";
@@ -225,9 +238,17 @@ void Admin::ActivateMenu(char* action)
         DeleteTicket(id);
         break;
 
-    case '9':
+    case 'x':
         DeleteAllTickets();
         cout << "All tickets have beeen deleted!" << endl;
+        break;
+
+    case 'e':
+        ShowAllEvents();
+        break;
+
+    case 'u':
+        ShowUsers();
         break;
     }
     system("pause");
