@@ -4,6 +4,7 @@
 
 Customer::Customer(std::string name, std::string login, std::string password) : User(name, login, password)
 {
+    this->role = "Customer";
 }
 
 void Customer::PrintMenu(char *action)
