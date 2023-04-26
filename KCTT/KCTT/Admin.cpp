@@ -180,7 +180,7 @@ void Admin::PrintMenu(char* action)
     cout << "6. Delete event" << endl;
     cout << "7. Add ticket to event" << endl;    
     cout << "8. Delete ticket" << endl;
-    cout << "[e] Show events" << endl;
+    cout << "[y] Show events" << endl;
     cout << "[u] Show users" << endl;
     cout << "[x] Delete all tickets" << endl;
     cin >> *action;
@@ -188,7 +188,8 @@ void Admin::PrintMenu(char* action)
 
 void Admin::ActivateMenu(char* action)
 {
-    string name, login, password,role, id;    
+    string name, login, password, id;   
+    Event event;
     switch (*action)
     {
     case '1':        
@@ -213,7 +214,17 @@ void Admin::ActivateMenu(char* action)
         break;
 
     case '4':
-        // add new event        
+        cout << "Enter name: ";
+        cin >> event.name;
+        cout << "Enter time of start: ";
+        cin >> event.startTime;
+        cout << "Enter time of end: ";
+        cin >> event.endTime;
+        cout << "Enter date: ";
+        cin >> event.date;
+        cout << "Enter status: ";
+        cin >> event.status;
+        EventStore::events.push_back(event);
         break;
 
     case '5':
@@ -243,7 +254,7 @@ void Admin::ActivateMenu(char* action)
         cout << "All tickets have beeen deleted!" << endl;
         break;
 
-    case 'e':
+    case 'y':
         ShowAllEvents();
         break;
 
