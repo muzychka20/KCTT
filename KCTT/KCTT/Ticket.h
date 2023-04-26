@@ -8,6 +8,7 @@ class Ticket
 private:
 	std::string row;
 	std::string place;
+	bool isBooked;
 	std::string id;
 	std::string Event_Id;
 	std::string Customer_Id;
