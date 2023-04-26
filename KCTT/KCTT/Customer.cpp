@@ -17,8 +17,8 @@ void Customer::ActivateMenu(char *action)
 
 void Customer::ShowTickets()
 {
-    for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
-        cout << TicketStore::tickets[i].ShowTicket() << endl;
+    for (size_t i = 0; i < boughtTickets.size(); i++) {
+        cout << boughtTickets[i].ShowTicket() << endl;
         cout << "----------" << endl;
     }
 }
