@@ -129,12 +129,12 @@ void Customer::ActivateMenu(char *action)
         break;
     }
     case '5': {
-        if (TicketStore::tickets.size() == 0) {
+        if (boughtTickets.size() == 0) {
             cout << "No tickets have been ordered yet." << endl;
             return;
         }
         cout << "The following tickets have been ordered:" << endl;
-        for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
+        for (size_t i = 0; i < boughtTickets.size(); i++) {
             cout << "Ticket " << i + 1 << ":" << endl;
             ShowTickets();
             cout << endl;
@@ -179,9 +179,9 @@ void Customer::AddTicket(Ticket ticket)
 
 void Customer::DeleteTicket(std::string ticketId)
 {
-    for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
-        if (TicketStore::tickets[i].getId() == ticketId) {
-            TicketStore::tickets.erase(TicketStore::tickets.begin() + i);
+    for (size_t i = 0; i < boughtTickets.size(); i++) {
+        if (boughtTickets[i].getId() == ticketId) {
+            boughtTickets.erase(boughtTickets.begin() + i);
             break;
         }
     }
