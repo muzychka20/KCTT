@@ -1,6 +1,7 @@
 #pragma once
 #include "../Elements/Ticket.h"
 #include <iostream>
+#include <string>
 
 class User
 {
@@ -18,10 +19,10 @@ public:
   std::string GetId();
   std::string GetRole();
   std::string GetName();
+  std::string GetLogin();
   void SetName(std::string newName);
   void SetLogin(std::string newLogin);
   void SetPassword(std::string newPassword);
-  bool CompareLogin(std::string login);
   bool ComparePassword(std::string password);
   virtual void PrintMenu(char *action);
   virtual void ActivateMenu(char *action);
@@ -29,6 +30,4 @@ public:
   virtual void ShowAllEvents();
   virtual void AddTicket(Ticket ticket);
   virtual void DeleteTicket(std::string ticketId);
-  virtual void FindEventByDate(std::string date);
-  virtual void FindEventByName(std::string name);
 };

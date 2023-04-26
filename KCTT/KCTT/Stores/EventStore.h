@@ -5,5 +5,19 @@
 class EventStore
 {
 public:
-  static std::vector<Event> events;
+  EventStore();
+  int GetSize();
+  void Add(Event event);
+  void Delete(size_t index);
+  void DeleteAll();
+  void DeleteById(std::string id);
+  void DeleteByName(std::string name);
+  void DeleteByDate(std::string date);
+  Event *Get(size_t index);
+  Event *FindById(std::string id);
+  std::vector<Event> FindByDate(std::string date);
+  std::vector<Event> FindByName(std::string name);
+
+private:
+  std::vector<Event> events;
 };

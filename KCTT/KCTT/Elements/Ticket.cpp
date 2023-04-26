@@ -4,43 +4,43 @@
 
 int tid = 0;
 
-Ticket::Ticket(std::string row, std::string place, bool isBooked)
+Ticket::Ticket(std::string eventId, std::string row, std::string place)
 {
   tid++;
+  this->id = "t" + std::to_string(tid);
+  this->eventId = eventId;
   this->row = row;
   this->place = place;
-  this->isBooked = isBooked;
-  this->id = "t" + std::to_string(tid);
+  this->isBooked = false;
 }
 
-std::string Ticket::getId()
+std::string Ticket::GetId()
 {
   return this->id;
 }
 
-std::string Ticket::getRow()
+std::string Ticket::GetRow()
 {
   return this->row;
 }
 
-std::string Ticket::getPlace()
+std::string Ticket::GetPlace()
 {
   return this->place;
 }
 
-std::string Ticket::getCustomerId()
+std::string Ticket::GetCustomerId()
 {
-  return this->Customer_Id;
+  return this->customerId;
 }
 
-std::string Ticket::getEventId()
+std::string Ticket::GetEventId()
 {
-  return this->Event_Id;
+  return this->eventId;
 }
 
 bool Ticket::IsBooked()
 {
-  //
   return this->isBooked;
 }
 
@@ -54,19 +54,7 @@ void Ticket::Unbooking()
   this->isBooked = false;
 }
 
-void Ticket::setCustomerId(std::string newCustomer)
+void Ticket::SetCustomerId(std::string newCustomer)
 {
-  this->Customer_Id = newCustomer;
-}
-
-void Ticket::setEventId(std::string newEvent)
-{
-  this->Event_Id = newEvent;
-}
-
-void Ticket::ShowTicket()
-{
-  std::cout << "Ticket_Id\t" << this->id << std::endl;
-  std::cout << "Event\t" << this->Event_Id << std::endl;
-  std::cout << "Customer\t" << this->Customer_Id << std::endl;
+  this->customerId = newCustomer;
 }

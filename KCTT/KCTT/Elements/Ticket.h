@@ -10,20 +10,18 @@ private:
   std::string id;
   std::string row;
   std::string place;
-  std::string Event_Id;
-  std::string Customer_Id;
+  std::string eventId;
+  std::string customerId;
 
 public:
-  Ticket(std::string row, std::string place, bool isBooked);
-  std::string getId();
-  std::string getRow();
-  std::string getPlace();
-  std::string getEventId();
-  std::string getCustomerId();
+  Ticket(std::string eventId, std::string row, std::string place);
+  std::string GetId();
+  std::string GetRow();
+  std::string GetPlace();
+  std::string GetEventId();
+  std::string GetCustomerId();
   bool IsBooked();
   void Booking();
   void Unbooking();
-  void setCustomerId(std::string newCustomer);
-  void setEventId(std::string newEvent);
-  void ShowTicket();
+  void SetCustomerId(std::string newCustomer);
 };

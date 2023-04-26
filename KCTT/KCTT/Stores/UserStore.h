@@ -1,10 +1,22 @@
 #pragma once
 #include "../Users/User.h"
+#include <cstddef>
 #include <iostream>
 #include <vector>
 
 class UserStore
 {
 public:
-  static std::vector<User *> users;
+  UserStore();
+  int GetSize();
+  void Add(User *user);
+  void Delete(size_t index);
+  void DeleteAll();
+  void DeleteById(std::string id);
+  User *Get(size_t index);
+  User *FindById(std::string id);
+  User *FindByLogin(std::string login);
+
+private:
+  std::vector<User *> users;
 };

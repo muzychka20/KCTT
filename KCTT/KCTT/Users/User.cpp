@@ -2,6 +2,7 @@
 #include "../Elements/Ticket.h"
 #include <iostream>
 #include <ostream>
+#include <string>
 
 int uid = 0;
 
@@ -30,6 +31,11 @@ std::string User::GetRole()
   return this->role;
 }
 
+std::string User::GetLogin()
+{
+  return this->login;
+}
+
 void User::SetName(std::string newName)
 {
   this->name = newName;
@@ -43,11 +49,6 @@ void User::SetLogin(std::string newLogin)
 void User::SetPassword(std::string newPassword)
 {
   this->password = newPassword;
-}
-
-bool User::CompareLogin(std::string login)
-{
-  return this->login == login;
 }
 
 bool User::ComparePassword(std::string password)
@@ -64,15 +65,10 @@ void User::PrintMenu(char *action)
 
 void User::ActivateMenu(char *action)
 {
-  switch (*action)
-  {
-  default:
-    std::cout << "Action not found." << std::endl;
-    std::cout << "Enter to continue..." << std::endl;
-    std::cin.ignore(10, '\n');
-    std::cin.get();
-    break;
-  }
+  std::cout << "Action not found." << std::endl;
+  std::cout << "Enter to continue..." << std::endl;
+  std::cin.ignore(10, '\n');
+  std::cin.get();
 }
 
 void User::ShowTickets()
@@ -93,14 +89,4 @@ void User::AddTicket(Ticket ticket)
 void User::DeleteTicket(std::string ticketId)
 {
   std::cout << "User.DeleteTicket() not overloaded!" << std::endl;
-}
-
-void User::FindEventByDate(std::string date)
-{
-  std::cout << "User.FindEventByDate() not overloaded!" << std::endl;
-}
-
-void User::FindEventByName(std::string name)
-{
-  std::cout << "User.FindEventByName() not overloaded!" << std::endl;
 }

@@ -8,14 +8,15 @@
 #include <string>
 #include <vector>
 
-void setup();
 void authorize();
 void activate();
 void select(char *select);
 
 int main()
 {
-  setup();
+  GlobalStore::InitUsersStore();
+  GlobalStore::InitEventStore();
+  GlobalStore::InitTicketStore();
 
   do
   {
@@ -40,19 +41,6 @@ int main()
   } while (true);
 }
 
-void setup()
-{
-  UserStore::users.push_back(new Admin("Kyrylo Muzychka", "kyrylo", "1"));
-  UserStore::users.push_back(new Admin("Dmitry Tavern", "dmitry", "2"));
-  UserStore::users.push_back(new Admin("Den Strateg", "den", "3"));
-  UserStore::users.push_back(new Admin("Podion Boz", "rodion", "4"));
-  UserStore::users.push_back(new Admin("Olga Kostrenko ", "olga", "5"));
-
-  UserStore::users.push_back(new Customer("Customer #1", "custom1", "1"));
-  UserStore::users.push_back(new Customer("Customer #2", "custom2", "1"));
-  UserStore::users.push_back(new Customer("Customer #3", "custom3", "1"));
-}
-
 void select(char *select)
 {
   std::vector<std::string> boot_menu = {"[1] Authorize in the system",
@@ -70,28 +58,33 @@ void authorize()
 
   for (int attempts = 1; attempts <= 3; attempts++)
   {
+    User *user;
+
     std::string login;
     UI::EnterString("Enter login: ", &login);
+
+    user = GlobalStore::GetUserStore()->FindByLogin(login);
+
+    if (user == nullptr)
+    {
+      std::cout << "Error: A user with this login will not be found. Available "
+                   "attempts: "
+                << 3 - attempts << std::endl;
+      continue;
+    }
 
     std::string password;
     UI::EnterString("Enter password: ", &password);
 
-    std::cout << login;
-
-    for (size_t i = 0; i < UserStore::users.size(); i++)
+    if (!user->ComparePassword(password))
     {
-      if (UserStore::users[i]->CompareLogin(login))
-      {
-        if (UserStore::users[i]->ComparePassword(password))
-        {
-          GlobalStore::SetAuthorizedUser(UserStore::users[i]);
-          return;
-        }
-      }
+
+      std::cout << "Error: password is invalid. Available attempts: "
+                << 3 - attempts << std::endl;
+      continue;
     }
 
-    std::cout << "Error: login or password is invalid. Available attempts: "
-              << 3 - attempts << std::endl;
+    GlobalStore::SetAuthorizedUser(user);
   }
 }
 
