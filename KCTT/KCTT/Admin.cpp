@@ -193,33 +193,36 @@ void Admin::PrintMenu(char* action)
 }
 
 void Admin::ActivateMenu(char* action)
-{
-    string name, login, password, id;   
-    Event event;
-    switch (*action)
-    {
-    case '1':        
+{          
+    switch (*action) {
+    case '1': {
+        string name, login, password;
         cout << "Enter name: ";
         cin >> name;
         cout << "Enter login: ";
         cin >> login;
         cout << "Enter password: ";
-        cin >> password;                      
-        UserStore::users.push_back(new Customer(name, login, password));        
+        cin >> password;
+        UserStore::users.push_back(new Customer(name, login, password));
         break;
-    case '2':
+    }
+    case '2': {
+        string id;
         cout << "Enter id: ";
         cin >> id;
         EditCustomer(id);
         break;
-    case '3':
+    }
+    case '3': {
+        string id;
         cout << "Enter id: ";
         cin >> id;
         DeleteCustomer(id);
         cout << "Customer has been deleted" << endl;
         break;
-
-    case '4':
+    }
+    case '4': {
+        Event event;
         cout << "Enter name: ";
         cin >> event.name;
         cout << "Enter time of start: ";
@@ -232,44 +235,63 @@ void Admin::ActivateMenu(char* action)
         cin >> event.status;
         EventStore::events.push_back(event);
         break;
-
-    case '5':
+    }
+    case '5': {
+        string id;
         cout << "Enter id: ";
         cin >> id;
         EditEvent(id);
         break;
-
-    case '6':
+    }
+    case '6': {
+        string id;
         cout << "Enter id: ";
         cin >> id;
         DeleteEvent(id);
         break;
-
-    case '7':
-        // add ticket
+    }
+    case '7': {
+        string row, name, place, CustomerId, EventId;
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter row: ";
+        cin >> row;
+        cout << "Enter place: ";
+        cin >> place;
+        cout << "Enter customer id: ";
+        cin >> CustomerId;
+        cout << "Enter event id: ";
+        cin >> EventId;
+        Ticket ticket(row, place, false);
+        ticket.setEventId(EventId);
+        ticket.setCustomerId(CustomerId);
+        TicketStore::tickets.push_back(ticket);
         break;
-
-    case '8':
+    }
+    case '8': {
+        string id;
         cout << "Enter id: ";
         cin >> id;
         DeleteTicket(id);
         break;
-
-    case '9':
+    }
+    case '9': {
         ShowTickets();
-
-    case 'x':
+        break;
+    }
+    case 'x': {
         DeleteAllTickets();
         cout << "All tickets have beeen deleted!" << endl;
         break;
-
-    case 'y':
+    }
+    case 'y': {
         ShowAllEvents();
         break;
-
-    case 'u':
+    }
+    case 'u': {
         ShowUsers();
         break;
+    }
     }
     system("pause");
 }
