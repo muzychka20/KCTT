@@ -9,6 +9,7 @@
 
 Customer::Customer(std::string name, std::string login, std::string password) : User(name, login, password)
 {
+    this->role = "Customer";
 }
 
 void Customer::PrintMenu(char *action)
@@ -153,8 +154,8 @@ void Customer::ActivateMenu(char *action)
 
 void Customer::ShowTickets()
 {
-    for (size_t i = 0; i < TicketStore::tickets.size(); i++) {
-        cout << TicketStore::tickets[i].ShowTicket() << endl;
+    for (size_t i = 0; i < boughtTickets.size(); i++) {
+        cout << boughtTickets[i].ShowTicket() << endl;
         cout << "----------" << endl;
     }
 }

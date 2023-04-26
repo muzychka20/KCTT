@@ -7,6 +7,7 @@ using namespace std;
 
 Admin::Admin(std::string name, std::string login, std::string password) : User(name, login, password)
 {    
+    this->role = "Admin";
 }
 
 void Admin::DeleteEvent(string id)
