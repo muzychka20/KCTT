@@ -44,26 +44,32 @@ void Customer::ActivateMenu(char *action)
   {
   case '1':
     this->ToBuyTicket();
+    system("pause");
     break;
 
   case '2':
     this->ToFindEventByName();
+    system("pause");
     break;
 
   case '3':
     this->ToFindEventByDate();
+    system("pause");
     break;
 
   case '4':
     this->ToPrintAllEvents();
+    system("pause");
     break;
 
   case '5':
     this->ToPrintBoughtTickets();
+    system("pause");
     break;
 
   case '6':
     this->ToCancelTicket();
+    system("pause");
     break;
   }
 }
@@ -173,7 +179,7 @@ void Customer::ToPrintAllEvents()
   {
     Event *event = GlobalStore::GetEventStore()->Get(index);
     UI::PrintEventRow(event);
-  }  
+  }
 }
 
 void Customer::ToPrintBoughtTickets()
@@ -186,11 +192,11 @@ void Customer::ToPrintBoughtTickets()
     return;
   }
 
-  int length = boughtTickets->GetSize();      
+  int length = boughtTickets->GetSize();
 
   for (size_t index = 0; index < length; index++)
   {
     Ticket *ticket = boughtTickets->Get(index);
     UI::PrintTicketRow(ticket);
-  }  
+  }
 }
