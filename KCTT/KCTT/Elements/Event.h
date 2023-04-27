@@ -21,5 +21,9 @@ public:
   std::string GetStatus();
   std::string GetStartTime();
   std::string GetEndTime();
+  void SetName(std::string name);
+  void SetDate(std::string date);
   void SetStatus(std::string status);
+  void SetStartTime(std::string endTime);
+  void SetEndTime(std::string startTime);
 };

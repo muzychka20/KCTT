@@ -41,7 +41,27 @@ std::string Event::GetEndTime()
   return this->endTime;
 }
 
+void Event::SetName(std::string name)
+{
+  this->name = name;
+}
+
+void Event::SetDate(std::string date)
+{
+  this->date = date;
+}
+
 void Event::SetStatus(std::string status)
 {
   this->status = status;
+}
+
+void Event::SetStartTime(std::string endTime)
+{
+  this->endTime = endTime;
+}
+
+void Event::SetEndTime(std::string startTime)
+{
+  this->startTime = startTime;
 }
