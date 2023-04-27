@@ -1,4 +1,5 @@
 #include "./UI.h"
+#include "Stores/GlobalStore.h"
 #include <iomanip>
 #include <iostream>
 
@@ -30,33 +31,48 @@ void UI::PrintSimpleMenu(std::vector<std::string> items)
 
 void UI::PrintEventRow(Event *event)
 {
-  std::cout
-      << "-------------------------------------------------------------------"
-      << std::endl;
-  std::cout << "Event name: " << event->GetId() << std::endl
+  std::cout << "Hi";
+  /*
+  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
+  std::cout << std::setfill(' ');
+
+  std::cout << "Event name: " << event->GetName() << std::endl
             << "Event start: " << event->GetStartTime() << std::endl
             << "Event end: " << event->GetEndTime() << std::endl
             << "Event date: " << event->GetDate() << std::endl
             << "Event status: " << event->GetStatus() << std::endl;
+  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
+  std::cout << std::setfill(' ');
+  */
 }
 
 void UI::PrintTicketRow(Ticket *ticket)
 {
-  std::cout
-      << "-------------------------------------------------------------------"
-      << std::endl;
-  std::cout << "Event name: " << ticket->GetEventId() << std::endl
-            << "Ticket name: " << ticket->GetId() << std::endl
-            << "Row: " << ticket->GetRow() << std::endl
-            << "Place: " << ticket->GetPlace() << std::endl
-            << "Is booked: " << ticket->IsBooked() << std::endl;
+  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
+  std::cout << std::setfill(' ');
+
+
+  std::string id = ticket->GetEventId();
+  std::cout << "Event name: " << GlobalStore::GetEventStore()->FindById(id)->GetName() << std::endl;
+
+  if (ticket->GetCustomerId().empty())
+    std::cout << "User: empty" << std::endl;
+  else
+    std::cout << "User: " << ticket->GetCustomerId() << std::endl;
+
+    std::cout << "Row: " << ticket->GetRow() << std::endl
+              << "Place: " << ticket->GetPlace() << std::endl
+              << "Is booked: " << ticket->IsBooked() << std::endl;
+  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
+  std::cout << std::setfill(' ');
 }
 
 void UI::PrintUserRow(User *user)
 {
   std::cout << "-------------------------------------------------------------------" << std::endl;
-  std::cout << "Name: " << user->GetName() << std::endl
-            << "Role: " << user->GetRole() << std::endl;
+    std::cout << "Login: " << user->GetLogin() << std::endl
+              << "Name: " << user->GetName() << std::endl
+              << "Role: " << user->GetRole() << std::endl;
 }
 
 void UI::EnterString(std::string title, std::string *string)
