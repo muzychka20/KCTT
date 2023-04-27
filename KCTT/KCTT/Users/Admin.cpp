@@ -170,7 +170,38 @@ void Admin::ToEditEvent()
 {
   UI::PrintTitle("Edit event action");
 
+  std::string field, newValue;
+  std::cout << "Which field to edit?: ";
+  std::cin >> field;
+  std::cout << "New value: ";
+  std::cin >> newValue;
+  for (size_t i = 0; i < GlobalStore::GetEventStore()->GetSize(); i++) {
+    if (GlobalStore::GetEventStore()->Get() == id)
+    {
+      if (field == "date") {
+        EventStore::events[i].date = newValue;
+      }
+      else if (field == "start time") {
+        EventStore::events[i].startTime = newValue;
+      }
+      else if (field == "end time")
+      {
+        EventStore::events[i].endTime = newValue;
+      }
+      else if (field == "name")
+      {
+        EventStore::events[i].name = newValue;
+      }
+      else if (field == "status")
+      {
+        EventStore::events[i].status = newValue;
+      }
+      break;
+    }
+  }
+
   std::cout << "Event success updated!" << std::endl;
+
 }
 
 void Admin::ToDeleteEvent()
