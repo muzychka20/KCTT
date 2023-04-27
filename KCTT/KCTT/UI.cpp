@@ -30,12 +30,18 @@ void UI::PrintSimpleMenu(std::vector<std::string> items)
 
 void UI::PrintEventRow(Event *event)
 {
-  std::cout << event->GetId() << std::endl;
+  std::cout
+      << "-------------------------------------------------------------------"
+      << std::endl;
+  std::cout << "Event name: " << event->GetId() << std::endl
+            << "Event start: " << event->GetStartTime() << std::endl
+            << "Event end: " << event->GetEndTime() << std::endl
+            << "Event date: " << event->GetDate() << std::endl
+            << "Event status: " << event->GetStatus() << std::endl;
 }
 
 void UI::PrintTicketRow(Ticket *ticket)
 {
-  //std::cout << ticket->GetId() << std::endl;
   std::cout
       << "-------------------------------------------------------------------"
       << std::endl;
@@ -48,7 +54,6 @@ void UI::PrintTicketRow(Ticket *ticket)
 
 void UI::PrintUserRow(User *user)
 {
-  //std::cout << user->GetId() << std::endl;
   std::cout << "-------------------------------------------------------------------" << std::endl;
   std::cout << "Name: " << user->GetName() << std::endl
             << "Role: " << user->GetRole() << std::endl;
