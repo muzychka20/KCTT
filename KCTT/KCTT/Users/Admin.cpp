@@ -302,8 +302,7 @@ void Admin::ToDeleteTicket()
     }
 
     if (GlobalStore::GetTicketStore()->ExistsById(id))
-    {
-      Customer::CancelTicket(id);
+    {      
       GlobalStore::GetTicketStore()->DeleteById(id);
       std::cout << "Ticket success deleted!" << std::endl;
       break;
