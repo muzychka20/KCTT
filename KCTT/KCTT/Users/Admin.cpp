@@ -173,26 +173,21 @@ void Admin::ToEditEvent()
   UI::EnterString("Which event to edit?: ", &id);
   UI::EnterString("Which field to edit?: ", &field);
   UI::EnterString("New value: ", &newValue);
-
   for (size_t i = 0; i < GlobalStore::GetEventStore()->GetSize(); i++) {
-    if (GlobalStore::GetEventStore()->Get(i)->GetId() == id)
-    {
+    if (GlobalStore::GetEventStore()->Get(i)->GetId() == id) {
       if (field == "Date") {
         GlobalStore::GetEventStore()->Get(i)->SetDate(newValue);
       }
       else if (field == "StartTime") {
         GlobalStore::GetEventStore()->Get(i)->SetStartTime(newValue);
       }
-      else if (field == "EndTime")
-      {
+      else if (field == "EndTime") {
         GlobalStore::GetEventStore()->Get(i)->SetEndTime(newValue);
       }
-      else if (field == "Name")
-      {
+      else if (field == "Name") {
         GlobalStore::GetEventStore()->Get(i)->SetName(newValue);
       }
-      else if (field == "Status")
-      {
+      else if (field == "Status") {
         GlobalStore::GetEventStore()->Get(i)->SetStatus(newValue);
       }
       break;
@@ -277,7 +272,16 @@ void Admin::ToAddTicket()
 
 void Admin::ToEditTicket()
 {
-
+  std::string field, newValue, id;
+  UI::PrintTitle("Edit ticket");                 
+  UI::EnterString("Which ticket to edit?: ", &id);  
+  UI::EnterString("New customer for ticket: ", &newValue);
+  for (size_t i = 0; i < GlobalStore::GetTicketStore()->GetSize(); i++) {
+    if (GlobalStore::GetTicketStore()->Get(i)->GetId() == id) {
+      GlobalStore::GetTicketStore()->Get(i)->SetCustomerId(newValue);
+      break;
+    }
+  }  
   std::cout << "Ticket success updated!" << std::endl;
 }
 
