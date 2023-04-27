@@ -26,8 +26,4 @@ public:
   bool ComparePassword(std::string password);
   virtual void PrintMenu(char *action);
   virtual void ActivateMenu(char *action);
-  virtual void ShowTickets();
-  virtual void ShowAllEvents();
-  virtual void AddTicket(Ticket ticket);
-  virtual void DeleteTicket(std::string ticketId);
 };

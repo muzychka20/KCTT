@@ -8,6 +8,7 @@ Event::Event(std::string name, std::string date, std::string startTime,
 {
   eid++;
   this->id = "t" + std::to_string(eid);
+  this->status = "opened";
 }
 
 std::string Event::GetId()

@@ -70,23 +70,3 @@ void User::ActivateMenu(char *action)
   std::cin.ignore(10, '\n');
   std::cin.get();
 }
-
-void User::ShowTickets()
-{
-  std::cout << "User.ShowTickets() not overloaded!" << std::endl;
-}
-
-void User::ShowAllEvents()
-{
-  std::cout << "User.ShowAllEvents() not overloaded!" << std::endl;
-}
-
-void User::AddTicket(Ticket ticket)
-{
-  std::cout << "User.AddTicket() not overloaded!" << std::endl;
-}
-
-void User::DeleteTicket(std::string ticketId)
-{
-  std::cout << "User.DeleteTicket() not overloaded!" << std::endl;
-}

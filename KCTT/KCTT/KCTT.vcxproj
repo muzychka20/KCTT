@@ -127,29 +127,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Stores\EventStore.cpp" />
+    <ClCompile Include="Stores\TicketStore.cpp" />
+    <ClCompile Include="Stores\UserStore.cpp" />
     <ClCompile Include="Stores\GlobalStore.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Users\Admin.cpp" />
     <ClCompile Include="Users\Customer.cpp" />
     <ClCompile Include="Elements\Event.cpp" />
-    <ClCompile Include="Stores\EventStore.cpp" />
-    <ClCompile Include="KCTT.cpp" />
     <ClCompile Include="Elements\Ticket.cpp" />
-    <ClCompile Include="Stores\TicketStore.cpp" />
     <ClCompile Include="Users\User.cpp" />
-    <ClCompile Include="Stores\UserStore.cpp" />
-    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="KCTT.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Stores\EventStore.h" />
+    <ClInclude Include="Stores\TicketStore.h" />
+    <ClInclude Include="Stores\UserStore.h" />
     <ClInclude Include="Stores\GlobalStore.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Users\Admin.h" />
     <ClInclude Include="Users\Customer.h" />
     <ClInclude Include="Elements\Event.h" />
-    <ClInclude Include="Stores\EventStore.h" />
     <ClInclude Include="Elements\Ticket.h" />
-    <ClInclude Include="Stores\TicketStore.h" />
     <ClInclude Include="Users\User.h" />
-    <ClInclude Include="Stores\UserStore.h" />
-    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

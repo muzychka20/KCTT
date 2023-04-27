@@ -18,28 +18,28 @@
     <ClCompile Include="KCTT.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Elements/Event.cpp">
+    <ClCompile Include="Users\Admin.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Users/User.cpp">
+    <ClCompile Include="Users\Customer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Users/Admin.cpp">
+    <ClCompile Include="Elements\Event.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Users/Customer.cpp">
+    <ClCompile Include="Stores\EventStore.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Elements/Ticket.cpp">
+    <ClCompile Include="Elements\Ticket.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Stores/EventStore.cpp">
+    <ClCompile Include="Stores\TicketStore.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Stores/TicketStore.cpp">
+    <ClCompile Include="Users\User.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Stores/UserStore.cpp">
+    <ClCompile Include="Stores\UserStore.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="UI.cpp">
@@ -50,28 +50,28 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Users/User.h">
+    <ClInclude Include="Users\Admin.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Users/Admin.h">
+    <ClInclude Include="Users\Customer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Users/Customer.h">
+    <ClInclude Include="Elements\Event.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Elements/Ticket.h">
+    <ClInclude Include="Stores\EventStore.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Stores/EventStore.h">
+    <ClInclude Include="Elements\Ticket.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Stores/UserStore.h">
+    <ClInclude Include="Stores\TicketStore.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Stores/TicketStore.h">
+    <ClInclude Include="Users\User.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Elements/Event.h">
+    <ClInclude Include="Stores\UserStore.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">

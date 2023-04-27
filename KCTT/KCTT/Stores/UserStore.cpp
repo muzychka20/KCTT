@@ -25,6 +25,18 @@ void UserStore::DeleteAll()
   this->users.clear();
 }
 
+void UserStore::DeleteAllCustomers()
+{
+  for (size_t index = 0; index < this->GetSize(); index++)
+  {
+    if (this->users[index]->GetRole() == "customer")
+    {
+      this->Delete(index);
+      break;
+    }
+  }
+}
+
 void UserStore::DeleteById(std::string id)
 {
   for (size_t index = 0; index < this->GetSize(); index++)
@@ -35,6 +47,19 @@ void UserStore::DeleteById(std::string id)
       break;
     }
   }
+}
+
+bool UserStore::ExistsById(std::string id)
+{
+  for (size_t index = 0; index < this->GetSize(); index++)
+  {
+    if (this->users[index]->GetId() == id)
+    {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 User *UserStore::Get(size_t index)

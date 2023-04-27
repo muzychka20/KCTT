@@ -8,19 +8,27 @@ class Admin : public User
 {
 public:
   Admin(std::string name, std::string login, std::string password);
-  void DeleteEvent(std::string id);
-  void AddEvent(Event event);
-  void EditEvent(std::string id);
-  void DeleteAllTicketsByEvent(std::string eventId);
-  void DeleteAllTickets();
-  void AddCustomer(Customer customer);
-  void DeleteCustomer(std::string id);
-  void EditCustomer(std::string id);
-  void ShowUsers();
+
   void PrintMenu(char *action) override;
   void ActivateMenu(char *action) override;
-  void ShowTickets() override;
-  void ShowAllEvents() override;
-  void AddTicket(Ticket ticket) override;
-  void DeleteTicket(std::string ticketId) override;
+
+  void ToPrintEvents();
+  void ToAddEvent();
+  void ToEditEvent();
+  void ToDeleteEvent();
+
+  void ToPrintTickets();
+  void ToAddTicket();
+  void ToEditTicket();
+  void ToDeleteTicket();
+  void ToDeleteTicketByEvent();
+
+  void ToPrintCustomers();
+  void ToAddCustomer();
+  void ToEditCustomer();
+  void ToDeleteCustomer();
+
+  void ToClearEvents();
+  void ToClearTickets();
+  void ToClearCustomers();
 };

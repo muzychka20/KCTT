@@ -1,7 +1,12 @@
 #include "./Admin.h"
 #include "../Stores/EventStore.h"
+#include "../Stores/GlobalStore.h"
 #include "../Stores/TicketStore.h"
 #include "../Stores/UserStore.h"
+#include "../UI.h"
+#include <cstddef>
+#include <iostream>
+#include <ostream>
 #include <string>
 
 Admin::Admin(std::string name, std::string login, std::string password)
@@ -10,214 +15,36 @@ Admin::Admin(std::string name, std::string login, std::string password)
   this->role = "Admin";
 }
 
-void Admin::DeleteEvent(std::string id)
-{
-  for (size_t i = 0; i < EventStore::events.size(); i++)
-  {
-    if (EventStore::events[i].GetId() == id)
-    {
-      EventStore::events.erase(EventStore::events.begin() + i);
-      DeleteAllTicketsByEvent(EventStore::events[i].GetId());
-      break;
-    }
-  }
-}
-
-void Admin::AddEvent(Event event)
-{
-  EventStore::events.push_back(event);
-}
-
-void Admin::EditEvent(std::string id)
-{
-  std::string field, newValue;
-  std::cout << "Which field to edit?: ";
-  std::cin >> field;
-  std::cout << "New value: ";
-  std::cin >> newValue;
-  for (size_t i = 0; i < EventStore::events.size(); i++)
-  {
-    if (EventStore::events[i].GetId() == id)
-    {
-      if (field == "date")
-      {
-        EventStore::events[i].date = newValue;
-      }
-      else if (field == "start time")
-      {
-        EventStore::events[i].startTime = newValue;
-      }
-      else if (field == "end time")
-      {
-        EventStore::events[i].endTime = newValue;
-      }
-      else if (field == "name")
-      {
-        EventStore::events[i].name = newValue;
-      }
-      else if (field == "status")
-      {
-        EventStore::events[i].status = newValue;
-      }
-      break;
-    }
-  }
-}
-
-void Admin::DeleteAllTicketsByEvent(std::string eventId)
-{
-  for (size_t i = 0; i < TicketStore::tickets.size(); i++)
-  {
-    if (TicketStore::tickets[i].getEventId() == eventId)
-    {
-      TicketStore::tickets.erase(TicketStore::tickets.begin() + i);
-      i--;
-      break;
-    }
-  }
-}
-
-void Admin::DeleteAllTickets()
-{
-  TicketStore::tickets.clear();
-}
-
-void Admin::ShowTickets()
-{
-  if (TicketStore::tickets.empty())
-  {
-    std::cout << "Tickets is empty!" << std::endl;
-  }
-  else
-  {
-    for (size_t i = 0; i < TicketStore::tickets.size(); i++)
-    {
-      TicketStore::tickets[i].ShowTicket();
-      std::cout << "----------" << std::endl;
-    }
-  }
-}
-
-void Admin::ShowAllEvents()
-{
-  if (EventStore::events.empty())
-  {
-    std::cout << "Events is empty!" << std::endl;
-  }
-  else
-  {
-    for (size_t i = 0; i < EventStore::events.size(); i++)
-    {
-      EventStore::events[i].ShowEvent();
-      std::cout << "----------" << std::endl;
-    }
-  }
-}
-
-void Admin::FindEventByDate(std::string date)
-{
-  for (size_t i = 0; i < EventStore::events.size(); i++)
-  {
-    if (EventStore::events[i].date == date)
-    {
-      EventStore::events[i].ShowEvent();
-      break;
-    }
-  }
-}
-
-void Admin::FindEventByName(std::string name)
-{
-  for (size_t i = 0; i < EventStore::events.size(); i++)
-  {
-    if (EventStore::events[i].name == name)
-    {
-      EventStore::events[i].ShowEvent();
-      break;
-    }
-  }
-}
-
-void Admin::AddTicket(Ticket ticket)
-{
-  TicketStore::tickets.push_back(ticket);
-}
-
-void Admin::DeleteTicket(std::string ticketId)
-{
-  for (size_t i = 0; i < TicketStore::tickets.size(); i++)
-  {
-    if (TicketStore::tickets[i].getId() == ticketId)
-    {
-      TicketStore::tickets.erase(TicketStore::tickets.begin() + i);
-      break;
-    }
-  }
-}
-
-void Admin::AddCustomer(Customer customer)
-{
-  UserStore::users.push_back(&customer);
-}
-
-void Admin::DeleteCustomer(std::string id)
-{
-  for (size_t i = 0; i < UserStore::users.size(); i++)
-  {
-    if (UserStore::users.at(i)->GetId() == id)
-    {
-
-      for (size_t i = 0; i < TicketStore::tickets.size(); i++)
-      {
-        if (UserStore::users.at(i)->GetId() ==
-            TicketStore::tickets[i].getCustomerId())
-        {
-          DeleteTicket(TicketStore::tickets[i].getId());
-        }
-      }
-      UserStore::users.erase(UserStore::users.begin() + i);
-      break;
-    }
-  }
-}
-
-void Admin::EditCustomer(std::string id)
-{
-  std::string newValue;
-  std::cout << "New name: ";
-  std::cin >> newValue;
-  for (size_t i = 0; i < UserStore::users.size(); i++)
-  {
-    if (UserStore::users.at(i)->GetId() == id)
-    {
-      UserStore::users.at(i)->SetName(newValue);
-      break;
-    }
-  }
-}
-
-void Admin::ShowUsers()
-{
-  for (size_t i = 0; i < UserStore::users.size(); i++)
-  {
-    std::cout << "-----" << std::endl;
-  }
-}
-
 void Admin::PrintMenu(char *action)
 {
-  std::cout << "1. Add new customer account" << std::endl;
-  std::cout << "2. Update customer account" << std::endl;
-  std::cout << "3. Delete customer account" << std::endl;
-  std::cout << "4. Add new event" << std::endl;
-  std::cout << "5. Update event" << std::endl;
-  std::cout << "6. Delete event" << std::endl;
-  std::cout << "7. Add ticket to event" << std::endl;
-  std::cout << "8. Delete ticket" << std::endl;
-  std::cout << "9. Show tickets" << std::endl;
-  std::cout << "[y] Show events" << std::endl;
-  std::cout << "[u] Show users" << std::endl;
-  std::cout << "[x] Delete all tickets" << std::endl;
+  std::vector<std::string> menu = {
+      "[1] Print events",
+      "[2] Add new event",
+      "[3] Update event",
+      "[4] Delete event",
+      "--------------------------------------------------------",
+      "[5] Print tickets",
+      "[6] Add new ticket",
+      "[7] Update ticket",
+      "[8] Delete ticket",
+      "[9] Delete ticket by event",
+      "--------------------------------------------------------",
+      "[a] Print all users",
+      "[b] Add new customer account",
+      "[c] Update customer account",
+      "[d] Delete customer account",
+      "--------------------------------------------------------",
+      "                       Danger zone                      ",
+      "--------------------------------------------------------",
+      "[z] Clear all events",
+      "[y] Clear all tickets",
+      "[x] Clear all customers",
+      "--------------------------------------------------------",
+      "[e] Logout",
+  };
+
+  UI::PrintTitle("Contol panel");
+  UI::PrintSimpleMenu(menu);
   std::cin >> *action;
 }
 
@@ -225,103 +52,379 @@ void Admin::ActivateMenu(char *action)
 {
   switch (*action)
   {
-  case '1': {
-    std::string name, login, password;
-    std::cout << "Enter name: ";
-    std::cin >> name;
-    std::cout << "Enter login: ";
-    std::cin >> login;
-    std::cout << "Enter password: ";
-    std::cin >> password;
-    UserStore::users.push_back(new Customer(name, login, password));
+  case '1':
+    this->ToPrintEvents();
+    system("pause");
+    break;
+
+  case '2':
+    this->ToAddEvent();
+    system("pause");
+    break;
+
+  case '3':
+    this->ToEditEvent();
+    system("pause");
+    break;
+
+  case '4':
+    this->ToDeleteEvent();
+    system("pause");
+    break;
+
+  case '5':
+    this->ToPrintTickets();
+    system("pause");
+    break;
+
+  case '6':
+    this->ToAddTicket();
+    system("pause");
+    break;
+
+  case '7':
+    this->ToEditTicket();
+    system("pause");
+    break;
+
+  case '8':
+    this->ToDeleteTicket();
+    system("pause");
+    break;
+
+  case '9':
+    this->ToDeleteTicketByEvent();
+    system("pause");
+    break;
+
+  case 'a':
+    this->ToPrintCustomers();
+    system("pause");
+    break;
+
+  case 'b':
+    this->ToAddCustomer();
+    system("pause");
+    break;
+
+  case 'c':
+    this->ToEditCustomer();
+    system("pause");
+    break;
+
+  case 'd':
+    this->ToDeleteCustomer();
+    system("pause");
+    break;
+
+  case 'z':
+    this->ToClearEvents();
+    system("pause");
+    break;
+
+  case 'y':
+    this->ToClearTickets();
+    system("pause");
+    break;
+
+  case 'x':
+    this->ToClearCustomers();
+    system("pause");
     break;
   }
-  case '2': {
-    std::string id;
-    std::cout << "Enter id: ";
-    std::cin >> id;
-    EditCustomer(id);
-    break;
+}
+
+/*-------------------------------------------------------------------
+ |                            Event                                 |
+ -------------------------------------------------------------------*/
+
+void Admin::ToPrintEvents()
+{
+  UI::PrintTitle("Events");
+
+  int length = GlobalStore::GetEventStore()->GetSize();
+
+  for (size_t index = 0; index < length; index++)
+  {
+    Event *event = GlobalStore::GetEventStore()->Get(index);
+    UI::PrintEventRow(event);
   }
-  case '3': {
-    std::string id;
-    std::cout << "Enter id: ";
-    std::cin >> id;
-    DeleteCustomer(id);
-    std::cout << "Customer has been deleted" << std::endl;
-    break;
+}
+
+void Admin::ToAddEvent()
+{
+  std::string name, date, startTime, endTime;
+
+  UI::PrintTitle("Add new event action");
+  UI::EnterString("Enter name: ", &name);
+  UI::EnterString("Enter date: ", &date);
+  UI::EnterString("Enter start time: ", &startTime);
+  UI::EnterString("Enter end time: ", &endTime);
+
+  GlobalStore::GetEventStore()->Add(new Event(name, date, startTime, endTime));
+
+  std::cout << "Event success added!" << std::endl;
+}
+
+void Admin::ToEditEvent()
+{
+  UI::PrintTitle("Edit event action");
+
+  std::cout << "Event success updated!" << std::endl;
+}
+
+void Admin::ToDeleteEvent()
+{
+  UI::PrintTitle("Delete event action");
+
+  std::string id;
+
+  do
+  {
+    UI::EnterString("Enter event id: ", &id);
+
+    if (id == "-")
+    {
+      break;
+    }
+
+    if (GlobalStore::GetEventStore()->ExistsById(id))
+    {
+      GlobalStore::GetEventStore()->DeleteById(id);
+      GlobalStore::GetTicketStore()->DeleteByEventId(id);
+      std::cout << "Event success deleted!" << std::endl;
+      break;
+    }
+
+    std::cout << "Event with id: " << id << " not found." << std::endl;
+  } while (true);
+}
+
+/*-------------------------------------------------------------------
+ |                           Ticket                                 |
+ -------------------------------------------------------------------*/
+
+void Admin::ToPrintTickets()
+{
+  UI::PrintTitle("Tickets");
+
+  int length = GlobalStore::GetTicketStore()->GetSize();
+
+  for (size_t index = 0; index < length; index++)
+  {
+    Ticket *ticket = GlobalStore::GetTicketStore()->Get(index);
+    UI::PrintTicketRow(ticket);
   }
-  case '4': {
-    Event event;
-    std::cout << "Enter name: ";
-    std::cin >> event.name;
-    std::cout << "Enter time of start: ";
-    std::cin >> event.startTime;
-    std::cout << "Enter time of end: ";
-    std::cin >> event.endTime;
-    std::cout << "Enter date: ";
-    std::cin >> event.date;
-    std::cout << "Enter status: ";
-    std::cin >> event.status;
-    EventStore::events.push_back(event);
-    break;
+}
+
+void Admin::ToAddTicket()
+{
+  UI::PrintTitle("Add new ticket action");
+
+  std::string row, name, place, customerId, eventId;
+
+  do
+  {
+    UI::EnterString("Enter event id: : ", &eventId);
+
+    if (eventId == "-")
+    {
+      break;
+    }
+
+    if (GlobalStore::GetEventStore()->ExistsById(eventId))
+    {
+      UI::EnterString("Enter ticket row: ", &row);
+      UI::EnterString("Enter ticket place: ", &place);
+
+      GlobalStore::GetTicketStore()->Add(new Ticket(eventId, row, place));
+
+      std::cout << "Ticket success added!" << std::endl;
+      break;
+    }
+
+    std::cout << "Event with id: " << eventId << " not found." << std::endl;
+  } while (true);
+}
+
+void Admin::ToEditTicket()
+{
+
+  std::cout << "Ticket success updated!" << std::endl;
+}
+
+void Admin::ToDeleteTicket()
+{
+  UI::PrintTitle("Delete ticket action");
+
+  std::string id;
+
+  do
+  {
+    UI::EnterString("Enter ticket id: ", &id);
+
+    if (id == "-")
+    {
+      break;
+    }
+
+    if (GlobalStore::GetTicketStore()->ExistsById(id))
+    {
+      GlobalStore::GetTicketStore()->DeleteById(id);
+      std::cout << "Ticket success deleted!" << std::endl;
+      break;
+    }
+
+    std::cout << "Ticket with id: " << id << " not found." << std::endl;
+  } while (true);
+}
+
+void Admin::ToDeleteTicketByEvent()
+{
+  UI::PrintTitle("Delete all event tickets action");
+
+  std::string eventId;
+
+  do
+  {
+    UI::EnterString("Enter event id: ", &eventId);
+
+    if (eventId.empty())
+    {
+      break;
+    }
+
+    if (GlobalStore::GetEventStore()->ExistsById(eventId))
+    {
+      GlobalStore::GetTicketStore()->DeleteByEventId(eventId);
+      std::cout << "Tickets for event with id" << eventId << " success deleted!"
+                << std::endl;
+      break;
+    }
+
+    std::cout << "Event with id: " << eventId << " not found." << std::endl;
+  } while (true);
+}
+
+/*-------------------------------------------------------------------
+ |                            Customer                              |
+ -------------------------------------------------------------------*/
+
+void Admin::ToPrintCustomers()
+{
+  UI::PrintTitle("Customers");
+
+  int length = GlobalStore::GetUserStore()->GetSize();
+
+  for (size_t index = 0; index < length; index++)
+  {
+    User *user = GlobalStore::GetUserStore()->Get(index);
+    UI::PrintUserRow(user);
   }
-  case '5': {
-    std::string id;
-    std::cout << "Enter id: ";
-    std::cin >> id;
-    EditEvent(id);
-    break;
+}
+
+void Admin::ToAddCustomer()
+{
+  UI::PrintTitle("Add event customer action");
+
+  std::string name, login, password;
+
+  UI::EnterString("Enter name: ", &name);
+  UI::EnterString("Enter login: ", &login);
+  UI::EnterString("Enter password: ", &password);
+
+  GlobalStore::GetUserStore()->Add(new Customer(name, login, password));
+
+  std::cout << "Customer success added!" << std::endl;
+}
+
+void Admin::ToEditCustomer()
+{
+  std::cout << "Customer success updated!" << std::endl;
+}
+
+void Admin::ToDeleteCustomer()
+{
+  UI::PrintTitle("Delete customer action");
+
+  std::string id;
+
+  do
+  {
+    UI::EnterString("Enter customer id: ", &id);
+
+    if (id == "-")
+    {
+      break;
+    }
+
+    if (GlobalStore::GetUserStore()->ExistsById(id))
+    {
+      if (GlobalStore::GetUserStore()->FindById(id)->GetRole() == "customer")
+      {
+        GlobalStore::GetUserStore()->DeleteById(id);
+        std::cout << "Customer success deleted!" << std::endl;
+        break;
+      }
+
+      std::cout << "User with id: " << id << " is not customer." << std::endl;
+    }
+
+    std::cout << "Customer with id: " << id << " not found." << std::endl;
+  } while (true);
+
+  std::cout << "Customer success deleted!" << std::endl;
+}
+
+/*-------------------------------------------------------------------
+ |                          Danger zone                             |
+ -------------------------------------------------------------------*/
+
+void Admin::ToClearEvents()
+{
+  UI::PrintTitle("DANGER: clear events action");
+
+  std::string answer;
+
+  UI::EnterString("Do you really want to delete all the events? (Y/n)",
+                  &answer);
+
+  if (answer == "y" || answer == "Y")
+  {
+    GlobalStore::GetEventStore()->DeleteAll();
+    GlobalStore::GetTicketStore()->DeleteAll();
+    std::cout << "Event cleansed!" << std::endl;
   }
-  case '6': {
-    std::string id;
-    std::cout << "Enter id: ";
-    std::cin >> id;
-    DeleteEvent(id);
-    break;
+}
+
+void Admin::ToClearTickets()
+{
+  UI::PrintTitle("DANGER: clear ticket action");
+
+  std::string answer;
+
+  UI::EnterString("Do you really want to delete all the tickets? (Y/n)",
+                  &answer);
+
+  if (answer == "y" || answer == "Y")
+  {
+    GlobalStore::GetTicketStore()->DeleteAll();
+    std::cout << "Event cleansed!" << std::endl;
   }
-  case '7': {
-    std::string row, name, place, CustomerId, EventId;
-    std::cout << "Enter name: ";
-    std::cin >> name;
-    std::cout << "Enter row: ";
-    std::cin >> row;
-    std::cout << "Enter place: ";
-    std::cin >> place;
-    std::cout << "Enter customer id: ";
-    std::cin >> CustomerId;
-    std::cout << "Enter event id: ";
-    std::cin >> EventId;
-    Ticket ticket(row, place, false);
-    ticket.setEventId(EventId);
-    ticket.setCustomerId(CustomerId);
-    TicketStore::tickets.push_back(ticket);
-    break;
+}
+
+void Admin::ToClearCustomers()
+{
+  UI::PrintTitle("DANGER: clear customers action");
+
+  std::string answer;
+
+  UI::EnterString("Do you really want to delete all the customers? (Y/n)",
+                  &answer);
+
+  if (answer == "y" || answer == "Y")
+  {
+    GlobalStore::GetUserStore()->DeleteAllCustomers();
+    std::cout << "Customers cleansed!" << std::endl;
   }
-  case '8': {
-    std::string id;
-    std::cout << "Enter id: ";
-    std::cin >> id;
-    DeleteTicket(id);
-    break;
-  }
-  case '9': {
-    ShowTickets();
-    break;
-  }
-  case 'x': {
-    DeleteAllTickets();
-    std::cout << "All tickets have beeen deleted!" << std::endl;
-    break;
-  }
-  case 'y': {
-    ShowAllEvents();
-    break;
-  }
-  case 'u': {
-    ShowUsers();
-    break;
-  }
-  }
-  system("pause");
 }

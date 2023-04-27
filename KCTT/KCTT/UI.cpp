@@ -28,6 +28,21 @@ void UI::PrintSimpleMenu(std::vector<std::string> items)
   std::cout << std::setfill(' ');
 }
 
+void UI::PrintEventRow(Event *event)
+{
+  std::cout << event->GetId() << std::endl;
+}
+
+void UI::PrintTicketRow(Ticket *ticket)
+{
+  std::cout << ticket->GetId() << std::endl;
+}
+
+void UI::PrintUserRow(User *user)
+{
+  std::cout << user->GetId() << std::endl;
+}
+
 void UI::EnterString(std::string title, std::string *string)
 {
   do

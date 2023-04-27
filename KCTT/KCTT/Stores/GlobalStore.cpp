@@ -1,3 +1,4 @@
+#include "GlobalStore.h"
 #include "./GlobalStore.h"
 #include "../Users/Admin.h"
 #include "../Users/Customer.h"
@@ -6,8 +7,12 @@
 #include "./UserStore.h"
 #include <iostream>
 #include <ostream>
+#include <string>
 
 User *GlobalStore::currectUser = nullptr;
+UserStore *GlobalStore::userStore = nullptr;
+EventStore *GlobalStore::eventStore = nullptr;
+TicketStore *GlobalStore::ticketStore = nullptr;
 
 void GlobalStore::InitUsersStore()
 {
@@ -28,12 +33,26 @@ void GlobalStore::InitUsersStore()
 
 void GlobalStore::InitEventStore()
 {
-  GlobalStore::eventStore = new EventStore();
+  EventStore *store = new EventStore();
+
+  store->Add(new Event("DDTU Conference", "24.04.2022", "17:00", "21:00"));
+
+  GlobalStore::eventStore = store;
 }
 
 void GlobalStore::InitTicketStore()
 {
-  GlobalStore::ticketStore = new TicketStore();
+  TicketStore *store = new TicketStore();
+
+  for (int row = 1; row < 4; row++)
+  {
+    for (int col = 1; col < 5; col++)
+    {
+      store->Add(new Ticket("e1", std::to_string(row), std::to_string(col)));
+    }
+  }
+
+  GlobalStore::ticketStore = store;
 }
 
 bool GlobalStore::IsAuthorizedUser()
