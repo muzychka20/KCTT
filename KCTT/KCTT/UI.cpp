@@ -35,7 +35,15 @@ void UI::PrintEventRow(Event *event)
 
 void UI::PrintTicketRow(Ticket *ticket)
 {
-  std::cout << ticket->GetId() << std::endl;
+  //std::cout << ticket->GetId() << std::endl;
+  std::cout
+      << "-------------------------------------------------------------------"
+      << std::endl;
+  std::cout << "Event name: " << ticket->GetEventId() << std::endl
+            << "Ticket name: " << ticket->GetId() << std::endl
+            << "Row: " << ticket->GetRow() << std::endl
+            << "Place: " << ticket->GetPlace() << std::endl
+            << "Is booked: " << ticket->IsBooked() << std::endl;
 }
 
 void UI::PrintUserRow(User *user)
