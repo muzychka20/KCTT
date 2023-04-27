@@ -7,7 +7,8 @@ Event::Event(std::string name, std::string date, std::string startTime,
              std::string endTime)
 {
   eid++;
-  this->id = "t" + std::to_string(eid);
+  this->id = "e" + std::to_string(eid);
+  this->name = name;
   this->startTime = startTime;
   this->endTime = endTime;
   this->date = date;
