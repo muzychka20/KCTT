@@ -1,4 +1,5 @@
 #include "./Admin.h"
+#include "./Customer.h"
 #include "../Stores/EventStore.h"
 #include "../Stores/GlobalStore.h"
 #include "../Stores/TicketStore.h"
@@ -302,6 +303,7 @@ void Admin::ToDeleteTicket()
 
     if (GlobalStore::GetTicketStore()->ExistsById(id))
     {
+      Customer::CancelTicket(id);
       GlobalStore::GetTicketStore()->DeleteById(id);
       std::cout << "Ticket success deleted!" << std::endl;
       break;
