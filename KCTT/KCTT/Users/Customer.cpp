@@ -2,6 +2,7 @@
 #include "../Elements/Event.h"
 #include "../Elements/Ticket.h"
 #include "../Stores/EventStore.h"
+#include "../Stores/GlobalStore.h"
 #include "../Stores/TicketStore.h"
 #include "../UI.h"
 #include <iostream>
@@ -98,7 +99,13 @@ void Customer::ToPrintAllEvents()
 {
   UI::PrintTitle("Available events");
 
-  std::cout << "In the process..." << std::endl;
+  int length = GlobalStore::GetEventStore()->GetSize();
+
+  for (size_t index = 0; index < length; index++)
+  {
+    Event *event = GlobalStore::GetEventStore()->Get(index);
+    UI::PrintEventRow(event);
+  }  
 }
 
 void Customer::ToPrintBoughtTickets()
@@ -111,5 +118,11 @@ void Customer::ToPrintBoughtTickets()
     return;
   }
 
-  std::cout << "In the process..." << std::endl;
+  int length = boughtTickets->GetSize();      
+
+  for (size_t index = 0; index < length; index++)
+  {
+    Ticket *ticket = boughtTickets->Get(index);
+    UI::PrintTicketRow(ticket);
+  }  
 }
