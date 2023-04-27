@@ -3,6 +3,7 @@
 #include "../Elements/Ticket.h"
 #include "../Stores/EventStore.h"
 #include "../Stores/TicketStore.h"
+#include "../Stores/GlobalStore.h"
 #include "../UI.h"
 #include <iostream>
 #include <stdio.h>
@@ -76,15 +77,45 @@ void Customer::ToBuyTicket()
 void Customer::ToFindEventByName()
 {
   UI::PrintTitle("Find an event");
+  std::string name;
+  UI::EnterString("Enter the name of the event: ", &name);
 
-  std::cout << "In the process..." << std::endl;
+  std::vector<Event*> founded = GlobalStore::GetEventStore()->FindByName(name);
+  
+  if (!founded.empty())
+  {
+    for (int i = 0; i < founded.size(); i++)
+    {
+      UI::PrintEventRow(founded[i]);    
+    }
+  }
+  else
+  {
+    std::cout << "Event not found for the name: " << name << std::endl;
+  }
+  
 }
 
 void Customer::ToFindEventByDate()
 {
   UI::PrintTitle("Find an event");
+  std::string date;
+  UI::EnterString("Enter the name of the event: ", &date);
 
-  std::cout << "In the process..." << std::endl;
+  std::vector<Event *> founded = GlobalStore::GetEventStore()->FindByDate(date);
+
+  if (!founded.empty())
+  {
+    for (int i = 0; i < founded.size(); i++)
+    {
+      UI::PrintEventRow(founded[i]);
+    }
+  }
+  else
+  {
+    std::cout << "Event not found for the name: " << date << std::endl;
+  }
+
 }
 
 void Customer::ToCancelTicket()
