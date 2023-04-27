@@ -272,7 +272,7 @@ void Admin::ToAddTicket()
 
 void Admin::ToEditTicket()
 {
-  std::string field, newValue, id;
+  std::string newValue, id;
   UI::PrintTitle("Edit ticket");                 
   UI::EnterString("Which ticket to edit?: ", &id);  
   UI::EnterString("New customer for ticket: ", &newValue);
@@ -372,6 +372,25 @@ void Admin::ToAddCustomer()
 
 void Admin::ToEditCustomer()
 {
+  std::string field, newValue, id;
+  UI::PrintTitle("Edit customer action\nField for edit: Name, Login, Password");
+  UI::EnterString("Which cutomer to edit?: ", &id);
+  UI::EnterString("Which field to edit?: ", &field);
+  UI::EnterString("New value: ", &newValue);
+  for (size_t i = 0; i < GlobalStore::GetUserStore()->GetSize(); i++) {
+    if (GlobalStore::GetUserStore()->Get(i)->GetId() == id) {
+      if (field == "Name") {
+        GlobalStore::GetUserStore()->Get(i)->SetName(newValue);
+      }
+      else if (field == "Login") {
+        GlobalStore::GetUserStore()->Get(i)->SetLogin(newValue);
+      }
+      else if (field == "Password") {
+        GlobalStore::GetUserStore()->Get(i)->SetPassword(newValue);
+      }
+      break;
+    }
+  }
   std::cout << "Customer success updated!" << std::endl;
 }
 
