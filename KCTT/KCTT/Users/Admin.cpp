@@ -168,32 +168,30 @@ void Admin::ToAddEvent()
 
 void Admin::ToEditEvent()
 {
-  UI::PrintTitle("Edit event action");
-  std::string field, newValue, id;
-  std::cout << "Which event to edit?: ";
-  std::cin >> id;
-  std::cout << "Which field to edit?: ";
-  std::cin >> field;
-  std::cout << "New value: ";
-  std::cin >> newValue;
+  std::string field, newValue, id; 
+  UI::PrintTitle("Edit event action\nField for edit: Date, StartTime, EndTime, Name, Status");    
+  UI::EnterString("Which event to edit?: ", &id);
+  UI::EnterString("Which field to edit?: ", &field);
+  UI::EnterString("New value: ", &newValue);
+
   for (size_t i = 0; i < GlobalStore::GetEventStore()->GetSize(); i++) {
     if (GlobalStore::GetEventStore()->Get(i)->GetId() == id)
     {
-      if (field == "date") {
+      if (field == "Date") {
         GlobalStore::GetEventStore()->Get(i)->SetDate(newValue);
       }
-      else if (field == "start time") {
+      else if (field == "StartTime") {
         GlobalStore::GetEventStore()->Get(i)->SetStartTime(newValue);
       }
-      else if (field == "end time")
+      else if (field == "EndTime")
       {
         GlobalStore::GetEventStore()->Get(i)->SetEndTime(newValue);
       }
-      else if (field == "name")
+      else if (field == "Name")
       {
         GlobalStore::GetEventStore()->Get(i)->SetName(newValue);
       }
-      else if (field == "status")
+      else if (field == "Status")
       {
         GlobalStore::GetEventStore()->Get(i)->SetStatus(newValue);
       }
