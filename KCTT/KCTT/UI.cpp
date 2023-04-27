@@ -40,7 +40,10 @@ void UI::PrintTicketRow(Ticket *ticket)
 
 void UI::PrintUserRow(User *user)
 {
-  std::cout << user->GetId() << std::endl;
+  //std::cout << user->GetId() << std::endl;
+  std::cout << "-------------------------------------------------------------------" << std::endl;
+  std::cout << "Name: " << user->GetName() << std::endl
+            << "Role: " << user->GetRole() << std::endl;
 }
 
 void UI::EnterString(std::string title, std::string *string)
