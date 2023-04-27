@@ -78,13 +78,13 @@ void authorize()
 
     if (!user->ComparePassword(password))
     {
-
       std::cout << "Error: password is invalid. Available attempts: "
                 << 3 - attempts << std::endl;
       continue;
     }
 
     GlobalStore::SetAuthorizedUser(user);
+    break;
   }
 }
 
