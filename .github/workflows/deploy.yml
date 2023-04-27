@@ -8,23 +8,27 @@ jobs:
   deploy-documentation:
     name: Deploy documentation
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/Documentation
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup node
         uses: actions/setup-node@v3
-        working-directory: ${{ github.workspace }}/Documentation
         with:
           node-version: 16
           cache: npm
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Install dependencies
-        working-directory: ${{ github.workspace }}/Documentation
         run: npm ci
 
       - name: Build documentation
-        working-directory: ${{ github.workspace }}/Documentation
         run: npm run docs:build
 
       - name: Deploy documentation
