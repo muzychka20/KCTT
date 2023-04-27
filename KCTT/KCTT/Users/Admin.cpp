@@ -169,39 +169,38 @@ void Admin::ToAddEvent()
 void Admin::ToEditEvent()
 {
   UI::PrintTitle("Edit event action");
-
-  std::string field, newValue;
+  std::string field, newValue, id;
+  std::cout << "Which event to edit?: ";
+  std::cin >> id;
   std::cout << "Which field to edit?: ";
   std::cin >> field;
   std::cout << "New value: ";
   std::cin >> newValue;
   for (size_t i = 0; i < GlobalStore::GetEventStore()->GetSize(); i++) {
-    if (GlobalStore::GetEventStore()->Get() == id)
+    if (GlobalStore::GetEventStore()->Get(i)->GetId() == id)
     {
       if (field == "date") {
-        EventStore::events[i].date = newValue;
+        GlobalStore::GetEventStore()->Get(i)->SetDate(newValue);
       }
       else if (field == "start time") {
-        EventStore::events[i].startTime = newValue;
+        GlobalStore::GetEventStore()->Get(i)->SetStartTime(newValue);
       }
       else if (field == "end time")
       {
-        EventStore::events[i].endTime = newValue;
+        GlobalStore::GetEventStore()->Get(i)->SetEndTime(newValue);
       }
       else if (field == "name")
       {
-        EventStore::events[i].name = newValue;
+        GlobalStore::GetEventStore()->Get(i)->SetName(newValue);
       }
       else if (field == "status")
       {
-        EventStore::events[i].status = newValue;
+        GlobalStore::GetEventStore()->Get(i)->SetStatus(newValue);
       }
       break;
     }
   }
-
   std::cout << "Event success updated!" << std::endl;
-
 }
 
 void Admin::ToDeleteEvent()
