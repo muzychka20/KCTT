@@ -31,8 +31,6 @@ void UI::PrintSimpleMenu(std::vector<std::string> items)
 
 void UI::PrintEventRow(Event *event)
 {
-  std::cout << "Hi";
-  /*
   std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
   std::cout << std::setfill(' ');
 
@@ -43,7 +41,6 @@ void UI::PrintEventRow(Event *event)
             << "Event status: " << event->GetStatus() << std::endl;
   std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
   std::cout << std::setfill(' ');
-  */
 }
 
 void UI::PrintTicketRow(Ticket *ticket)
