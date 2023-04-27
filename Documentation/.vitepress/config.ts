@@ -16,6 +16,7 @@ export const sidebar = [
 ];
 
 export default defineConfig({
+  base: "/KCTT",
   title: "Keep Calm & Take Tickets",
   description: "The university's OOP project is designed to gain experience in teamwork.",
   themeConfig: {
