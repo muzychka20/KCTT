@@ -14,6 +14,7 @@ jobs:
 
       - name: Setup node
         uses: actions/setup-node@v3
+        working-directory: ${{ github.workspace }}/Documentation
         with:
           node-version: 16
           cache: npm
@@ -23,6 +24,7 @@ jobs:
         run: npm ci
 
       - name: Build documentation
+        working-directory: ${{ github.workspace }}/Documentation
         run: npm run docs:build
 
       - name: Deploy documentation
