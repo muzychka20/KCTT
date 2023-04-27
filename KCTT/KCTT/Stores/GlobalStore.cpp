@@ -35,7 +35,7 @@ void GlobalStore::InitEventStore()
 {
   EventStore *store = new EventStore();
 
-  store->Add(new Event("DDTU Conference", "24.04.2022", "17:00", "21:00"));
+  store->Add(new Event("DDTUConference", "24.04.2022", "17:00", "21:00"));
 
   GlobalStore::eventStore = store;
 }
