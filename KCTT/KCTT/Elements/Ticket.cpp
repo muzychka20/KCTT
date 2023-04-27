@@ -47,6 +47,7 @@ bool Ticket::IsBooked()
 void Ticket::Booking()
 {
   this->isBooked = true;
+  this->customerId = "";
 }
 
 void Ticket::Unbooking()

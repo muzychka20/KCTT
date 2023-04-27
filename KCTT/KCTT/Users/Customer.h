@@ -1,6 +1,7 @@
 #pragma once
 #include "../Stores/TicketStore.h"
 #include "User.h"
+#include <string>
 #include <vector>
 
 class Customer : public User
@@ -10,11 +11,12 @@ public:
 
   void PrintMenu(char *action) override;
   void ActivateMenu(char *action) override;
+  void CancelTicket(std::string id);
 
   void ToBuyTicket();
+  void ToCancelTicket();
   void ToFindEventByName();
   void ToFindEventByDate();
-  void ToCancelTicket();
   void ToPrintAllEvents();
   void ToPrintBoughtTickets();
 

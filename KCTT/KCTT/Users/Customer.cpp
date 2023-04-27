@@ -7,6 +7,7 @@
 #include "../UI.h"
 #include <iostream>
 #include <stdio.h>
+#include <string>
 
 Customer::Customer(std::string name, std::string login, std::string password)
     : User(name, login, password)
@@ -67,11 +68,85 @@ void Customer::ActivateMenu(char *action)
   }
 }
 
+void Customer::CancelTicket(std::string id)
+{
+  if (this->boughtTickets->ExistsById(id))
+  {
+    Ticket *ticket = this->boughtTickets->FindById(id);
+
+    if (ticket != nullptr)
+    {
+      ticket->Unbooking();
+    }
+  }
+}
+
 void Customer::ToBuyTicket()
 {
   UI::PrintTitle("Buy a ticket");
 
-  std::cout << "In the process..." << std::endl;
+  std::string ticketId;
+
+  do
+  {
+    UI::EnterString("Enter ticket id: ", &ticketId);
+
+    if (ticketId == "-")
+    {
+      break;
+    }
+
+    if (ticketId == "-")
+    {
+      break;
+    }
+
+    if (GlobalStore::GetTicketStore()->ExistsById(ticketId))
+    {
+      Ticket *ticket = GlobalStore::GetTicketStore()->FindById(ticketId);
+
+      if (!ticket->IsBooked())
+      {
+        ticket->Booking();
+        ticket->SetCustomerId(GlobalStore::GetAuthorizedUser()->GetId());
+        this->boughtTickets->Add(ticket);
+        std::cout << "Ticket success booked." << std::endl;
+        break;
+      }
+
+      std::cout << "Ticket already booked." << std::endl;
+      continue;
+      ;
+    }
+
+    std::cout << "Ticket not found." << std::endl;
+  } while (true);
+}
+
+void Customer::ToCancelTicket()
+{
+  UI::PrintTitle("Cancel a ticket");
+
+  std::string ticketId;
+
+  do
+  {
+    UI::EnterString("Enter ticket id: ", &ticketId);
+
+    if (ticketId == "-")
+    {
+      break;
+    }
+
+    if (this->boughtTickets->ExistsById(ticketId))
+    {
+      this->CancelTicket(ticketId);
+      std::cout << "Ticket success canceled." << std::endl;
+      break;
+    }
+
+    std::cout << "Ticket not found." << std::endl;
+  } while (true);
 }
 
 void Customer::ToFindEventByName()
@@ -84,13 +159,6 @@ void Customer::ToFindEventByName()
 void Customer::ToFindEventByDate()
 {
   UI::PrintTitle("Find an event");
-
-  std::cout << "In the process..." << std::endl;
-}
-
-void Customer::ToCancelTicket()
-{
-  UI::PrintTitle("Cancel a ticket");
 
   std::cout << "In the process..." << std::endl;
 }
