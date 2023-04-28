@@ -22,6 +22,7 @@ public:
 
   static void EnterString(std::string title, std::string *string);
 
+  static void SetWindowFont(int size);
   static void SetWindowSize(int width, int height);
   static void DisableWindowScrollbar();
 };

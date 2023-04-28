@@ -284,7 +284,7 @@ void Admin::ToAddTicket()
 
   do
   {
-    UI::EnterString("Enter event id: : ", &eventId);
+    UI::EnterString("Enter event id: ", &eventId);
 
     if (eventId == "-")
     {
