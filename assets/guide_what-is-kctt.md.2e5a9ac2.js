@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a}from"./chunks/framework.3ec6c483.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/what-is-kctt.md"}'),s={name:"guide/what-is-kctt.md"};function c(r,o,n,i,d,p){return a(),e("div")}const f=t(s,[["render",c]]);export{m as __pageData,f as default};

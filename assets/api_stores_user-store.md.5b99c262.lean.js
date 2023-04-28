@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,O as i}from"./chunks/framework.3ec6c483.js";const _=JSON.parse('{"title":"UserStore class","description":"","frontmatter":{},"headers":[],"relativePath":"api/stores/user-store.md"}'),r={name:"api/stores/user-store.md"},s=i("",26),d=[s];function o(l,n,h,u,c,b){return a(),t("div",null,d)}const g=e(r,[["render",o]]);export{_ as __pageData,g as default};

@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a,O as i}from"./chunks/framework.3ec6c483.js";const b=JSON.parse('{"title":"Ticket class","description":"","frontmatter":{},"headers":[],"relativePath":"api/elements/ticket.md"}'),o={name:"api/elements/ticket.md"},s=i("",22),r=[s];function d(n,l,c,h,p,u){return a(),e("div",null,r)}const k=t(o,[["render",d]]);export{b as __pageData,k as default};
