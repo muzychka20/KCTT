@@ -294,13 +294,21 @@ void Admin::ToAddTicket()
 
     if (GlobalStore::GetEventStore()->ExistsById(eventId))
     {
+      TicketStore *store = GlobalStore::GetTicketStore();
+
       UI::EnterString("Enter ticket row: ", &row);
       UI::EnterString("Enter ticket place: ", &place);
 
-      GlobalStore::GetTicketStore()->Add(new Ticket(eventId, row, place));
+      if (store->Filter({.row = row, .place = place}).size() == 0)
+      {
+        GlobalStore::GetTicketStore()->Add(new Ticket(eventId, row, place));
+        std::cout << "Ticket success added!" << std::endl;
+        break;
+      }
 
-      std::cout << "Ticket success added!" << std::endl;
-      break;
+      std::cout << "Ticket with this row and place already exists!"
+                << std::endl;
+      continue;
     }
 
     std::cout << "Event with id: " << eventId << " not found." << std::endl;
