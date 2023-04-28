@@ -171,6 +171,7 @@ void Admin::ToAddEvent()
   UI::PrintRow();
   UI::PrintTitle("Add new event action");
   UI::PrintRow();
+
   UI::EnterString("Enter name: ", &name);
   UI::EnterString("Enter date: ", &date);
   UI::EnterString("Enter start time: ", &startTime);
@@ -313,6 +314,7 @@ void Admin::ToEditTicket()
   UI::PrintRow();
   UI::PrintTitle("Edit ticket");
   UI::PrintRow();
+
   UI::EnterString("Which ticket to edit?: ", &ticketId);
   UI::EnterString("New customer for ticket: ", &newCustomerId);
 
@@ -386,8 +388,14 @@ void Admin::ToDeleteTicketByEvent()
 
 void Admin::ToCancelTicket()
 {
+  UI::PrintRow();
+  UI::PrintTitle("Cancel ticket");
+  UI::PrintRow();
+
   std::string id;
+
   UI::EnterString("Enter id of ticket to unbooking: ", &id);
+
   if (GlobalStore::GetTicketStore()->ExistsById(id))
   {
     if (GlobalStore::GetTicketStore()->FindById(id)->IsBooked())
