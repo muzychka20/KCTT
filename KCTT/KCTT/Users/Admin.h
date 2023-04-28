@@ -22,6 +22,7 @@ public:
   void ToEditTicket();
   void ToDeleteTicket();
   void ToDeleteTicketByEvent();
+  void ToCancelTicket();
 
   void ToPrintCustomers();
   void ToAddCustomer();

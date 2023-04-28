@@ -29,6 +29,7 @@ void Admin::PrintMenu(char *action)
       "[7] Update ticket",
       "[8] Delete ticket",
       "[9] Delete ticket by event",
+      "[f] Cancel ticket",
       "--------------------------------------------------------",
       "[a] Print all users",
       "[b] Add new customer account",
@@ -95,6 +96,11 @@ void Admin::ActivateMenu(char *action)
 
   case '9':
     this->ToDeleteTicketByEvent();
+    system("pause");
+    break;
+
+  case 'f':
+    this->ToCancelTicket();
     system("pause");
     break;
 
@@ -339,6 +345,28 @@ void Admin::ToDeleteTicketByEvent()
 
     std::cout << "Event with id: " << eventId << " not found." << std::endl;
   } while (true);
+}
+
+void Admin::ToCancelTicket()
+{
+  std::string id;
+  UI::EnterString("Enter id of ticket to unbooking: ", &id);
+  if (GlobalStore::GetTicketStore()->ExistsById(id))
+  {
+    if (GlobalStore::GetTicketStore()->FindById(id)->IsBooked())
+    {
+      GlobalStore::GetTicketStore()->FindById(id)->Unbooking();
+      std::cout << "Ticket is unbooked!" << std::endl;
+    }
+    else
+    {
+      std::cout << "This ticket is not booked!" << std::endl;
+    }
+  }
+  else
+  {
+    std::cout << "Ticket not found!" << std::endl;
+  }
 }
 
 /*-------------------------------------------------------------------
