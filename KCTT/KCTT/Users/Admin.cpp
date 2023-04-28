@@ -23,30 +23,30 @@ void Admin::PrintMenu(char *action)
       "[2] Add new event",
       "[3] Update event",
       "[4] Delete event",
-      "--------------------------------------------------------",
+      "------------------------------------------------------------------",
       "[5] Print tickets",
       "[6] Add new ticket",
       "[7] Update ticket",
       "[8] Delete ticket",
       "[9] Delete ticket by event",
       "[f] Cancel ticket",
-      "--------------------------------------------------------",
+      "------------------------------------------------------------------",
       "[a] Print all users",
       "[b] Add new customer account",
       "[c] Update customer account",
       "[d] Delete customer account",
-      "--------------------------------------------------------",
+      "------------------------------------------------------------------",
       "                       Danger zone                      ",
-      "--------------------------------------------------------",
+      "------------------------------------------------------------------",
       "[z] Clear all events",
       "[y] Clear all tickets",
       "[x] Clear all customers",
-      "--------------------------------------------------------",
+      "------------------------------------------------------------------",
       "[e] Logout",
   };
 
   UI::PrintRow();
-  UI::PrintTitle("Contol panel");
+  UI::PrintTitle("Control panel");
   UI::PrintRow();
   UI::PrintSimpleMenu(menu);
   std::cin >> *action;

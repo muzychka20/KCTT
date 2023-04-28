@@ -25,7 +25,7 @@ void Customer::PrintMenu(char *action)
       "[4] View all events",
       "[5] View purchased tickets",
       "[6] Cancel a ticket",
-      "--------------------------------------------------------",
+      "------------------------------------------------------------------",
       "[e] Logout",
   };
 
