@@ -11,7 +11,6 @@ public:
 
   void PrintMenu(char *action) override;
   void ActivateMenu(char *action) override;
-  void CancelTicket(std::string id);
 
   void ToBuyTicket();
   void ToCancelTicket();
@@ -19,7 +18,4 @@ public:
   void ToFindEventByDate();
   void ToPrintAllEvents();
   void ToPrintBoughtTickets();
-
-private:
-  TicketStore *boughtTickets;
 };

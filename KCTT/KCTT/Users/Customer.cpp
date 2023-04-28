@@ -4,17 +4,16 @@
 #include "../Stores/EventStore.h"
 #include "../Stores/GlobalStore.h"
 #include "../Stores/TicketStore.h"
-#include "../Stores/GlobalStore.h"
 #include "../UI.h"
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <vector>
 
 Customer::Customer(std::string name, std::string login, std::string password)
     : User(name, login, password)
 {
   this->role = "Customer";
-  this->boughtTickets = new TicketStore();
 }
 
 void Customer::PrintMenu(char *action)
@@ -37,10 +36,6 @@ void Customer::PrintMenu(char *action)
 
 void Customer::ActivateMenu(char *action)
 {
-  std::string eventName, eventDate, row, place, id;
-  bool isBooked;
-  int choose = 0;
-
   switch (*action)
   {
   case '1':
@@ -75,19 +70,6 @@ void Customer::ActivateMenu(char *action)
   }
 }
 
-void Customer::CancelTicket(std::string id)
-{
-  if (this->boughtTickets->ExistsById(id))
-  {
-    Ticket *ticket = this->boughtTickets->FindById(id);
-
-    if (ticket != nullptr)
-    {
-      ticket->Unbooking();
-    }
-  }
-}
-
 void Customer::ToBuyTicket()
 {
   UI::PrintTitle("Buy a ticket");
@@ -103,27 +85,19 @@ void Customer::ToBuyTicket()
       break;
     }
 
-    if (ticketId == "-")
-    {
-      break;
-    }
-
     if (GlobalStore::GetTicketStore()->ExistsById(ticketId))
     {
       Ticket *ticket = GlobalStore::GetTicketStore()->FindById(ticketId);
 
       if (!ticket->IsBooked())
       {
-        ticket->Booking();
-        ticket->SetCustomerId(GlobalStore::GetAuthorizedUser()->GetId());
-        this->boughtTickets->Add(ticket);
+        ticket->Booking(GlobalStore::GetAuthorizedUser()->GetId());
         std::cout << "Ticket success booked." << std::endl;
         break;
       }
 
       std::cout << "Ticket already booked." << std::endl;
       continue;
-      ;
     }
 
     std::cout << "Ticket not found." << std::endl;
@@ -145,11 +119,26 @@ void Customer::ToCancelTicket()
       break;
     }
 
-    if (this->boughtTickets->ExistsById(ticketId))
+    if (GlobalStore::GetTicketStore()->ExistsById(ticketId))
     {
-      this->CancelTicket(ticketId);
-      std::cout << "Ticket success canceled." << std::endl;
-      break;
+      Ticket *ticket = GlobalStore::GetTicketStore()->FindById(ticketId);
+      std::string userId = GlobalStore::GetAuthorizedUser()->GetId();
+
+      if (ticket->IsBooked())
+      {
+        if (ticket->GetCustomerId() == userId)
+        {
+          ticket->Unbooking();
+          std::cout << "Ticket success canceled." << std::endl;
+          break;
+        }
+
+        std::cout << "You have not rights for this action." << std::endl;
+        continue;
+      }
+
+      std::cout << "Ticket not booked." << std::endl;
+      continue;
     }
 
     std::cout << "Ticket not found." << std::endl;
@@ -159,29 +148,32 @@ void Customer::ToCancelTicket()
 void Customer::ToFindEventByName()
 {
   UI::PrintTitle("Find an event");
+
   std::string name;
+
   UI::EnterString("Enter the name of the event: ", &name);
 
-  std::vector<Event*> founded = GlobalStore::GetEventStore()->FindByName(name);
-  
+  std::vector<Event *> founded = GlobalStore::GetEventStore()->FindByName(name);
+
   if (!founded.empty())
   {
     for (int i = 0; i < founded.size(); i++)
     {
-      UI::PrintEventRow(founded[i]);    
+      UI::PrintEventRow(founded[i]);
     }
   }
   else
   {
     std::cout << "Event not found for the name: " << name << std::endl;
   }
-  
 }
 
 void Customer::ToFindEventByDate()
 {
   UI::PrintTitle("Find an event");
+
   std::string date;
+
   UI::EnterString("Enter the name of the event: ", &date);
 
   std::vector<Event *> founded = GlobalStore::GetEventStore()->FindByDate(date);
@@ -197,7 +189,6 @@ void Customer::ToFindEventByDate()
   {
     std::cout << "Event not found for the name: " << date << std::endl;
   }
-
 }
 
 void Customer::ToPrintAllEvents()
@@ -217,17 +208,19 @@ void Customer::ToPrintBoughtTickets()
 {
   UI::PrintTitle("Bought tickets");
 
-  if (this->boughtTickets->GetSize() == 0)
+  std::string userId = GlobalStore::GetAuthorizedUser()->GetId();
+  std::vector<Ticket *> tickets =
+      GlobalStore::GetTicketStore()->Filter({.customerId = userId});
+
+  if (tickets.size() > 0)
+  {
+    for (size_t index = 0; index < tickets.size(); index++)
+    {
+      UI::PrintTicketRow(tickets[index]);
+    }
+  }
+  else
   {
     std::cout << "No tickets have been ordered yet." << std::endl;
-    return;
-  }
-
-  int length = boughtTickets->GetSize();
-
-  for (size_t index = 0; index < length; index++)
-  {
-    Ticket *ticket = boughtTickets->Get(index);
-    UI::PrintTicketRow(ticket);
   }
 }

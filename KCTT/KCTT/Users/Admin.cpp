@@ -273,13 +273,15 @@ void Admin::ToAddTicket()
 
 void Admin::ToEditTicket()
 {
-  std::string newValue, id;
+  std::string ticketId, newCustomerId;
+
   UI::PrintTitle("Edit ticket");                 
-  UI::EnterString("Which ticket to edit?: ", &id);  
-  UI::EnterString("New customer for ticket: ", &newValue);
+  UI::EnterString("Which ticket to edit?: ", &ticketId);  
+  UI::EnterString("New customer for ticket: ", &newCustomerId);
+
   for (size_t i = 0; i < GlobalStore::GetTicketStore()->GetSize(); i++) {
-    if (GlobalStore::GetTicketStore()->Get(i)->GetId() == id) {
-      GlobalStore::GetTicketStore()->Get(i)->SetCustomerId(newValue);
+    if (GlobalStore::GetTicketStore()->Get(i)->GetId() == ticketId) {
+      GlobalStore::GetTicketStore()->Get(i)->Booking(newCustomerId);
       break;
     }
   }  

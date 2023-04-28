@@ -44,18 +44,14 @@ bool Ticket::IsBooked()
   return this->isBooked;
 }
 
-void Ticket::Booking()
-{
-  this->isBooked = true;
-  this->customerId = "";
-}
-
 void Ticket::Unbooking()
 {
   this->isBooked = false;
+  this->customerId.clear();
 }
 
-void Ticket::SetCustomerId(std::string newCustomer)
+void Ticket::Booking(std::string customerId)
 {
-  this->customerId = newCustomer;
+  this->isBooked = true;
+  this->customerId = customerId;
 }

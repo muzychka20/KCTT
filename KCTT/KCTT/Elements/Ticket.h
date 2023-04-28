@@ -21,7 +21,6 @@ public:
   std::string GetEventId();
   std::string GetCustomerId();
   bool IsBooked();
-  void Booking();
   void Unbooking();
-  void SetCustomerId(std::string newCustomer);
+  void Booking(std::string customerId);
 };
