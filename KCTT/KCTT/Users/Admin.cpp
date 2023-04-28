@@ -1,10 +1,10 @@
 #include "./Admin.h"
-#include "./Customer.h"
 #include "../Stores/EventStore.h"
 #include "../Stores/GlobalStore.h"
 #include "../Stores/TicketStore.h"
 #include "../Stores/UserStore.h"
 #include "../UI.h"
+#include "./Customer.h"
 #include <cstddef>
 #include <iostream>
 #include <ostream>
@@ -45,7 +45,9 @@ void Admin::PrintMenu(char *action)
       "[e] Logout",
   };
 
+  UI::PrintRow();
   UI::PrintTitle("Contol panel");
+  UI::PrintRow();
   UI::PrintSimpleMenu(menu);
   std::cin >> *action;
 }
@@ -147,22 +149,28 @@ void Admin::ActivateMenu(char *action)
 
 void Admin::ToPrintEvents()
 {
+  UI::PrintRow();
   UI::PrintTitle("Events");
+  UI::PrintRow();
 
   int length = GlobalStore::GetEventStore()->GetSize();
 
   for (size_t index = 0; index < length; index++)
   {
     Event *event = GlobalStore::GetEventStore()->Get(index);
-    UI::PrintEventRow(event);
+    UI::PrintEventTableRow(event);
   }
+
+  UI::PrintRow();
 }
 
 void Admin::ToAddEvent()
 {
   std::string name, date, startTime, endTime;
 
+  UI::PrintRow();
   UI::PrintTitle("Add new event action");
+  UI::PrintRow();
   UI::EnterString("Enter name: ", &name);
   UI::EnterString("Enter date: ", &date);
   UI::EnterString("Enter start time: ", &startTime);
@@ -175,26 +183,39 @@ void Admin::ToAddEvent()
 
 void Admin::ToEditEvent()
 {
-  std::string field, newValue, id; 
-  UI::PrintTitle("Edit event action\nField for edit: Date, StartTime, EndTime, Name, Status");    
+  std::string field, newValue, id;
+
+  UI::PrintRow();
+  UI::PrintTitle("Edit event action\nField for edit: Date, StartTime, EndTime, "
+                 "Name, Status");
+  UI::PrintRow();
+
   UI::EnterString("Which event to edit?: ", &id);
   UI::EnterString("Which field to edit?: ", &field);
   UI::EnterString("New value: ", &newValue);
-  for (size_t i = 0; i < GlobalStore::GetEventStore()->GetSize(); i++) {
-    if (GlobalStore::GetEventStore()->Get(i)->GetId() == id) {
-      if (field == "Date") {
+
+  for (size_t i = 0; i < GlobalStore::GetEventStore()->GetSize(); i++)
+  {
+    if (GlobalStore::GetEventStore()->Get(i)->GetId() == id)
+    {
+      if (field == "Date")
+      {
         GlobalStore::GetEventStore()->Get(i)->SetDate(newValue);
       }
-      else if (field == "StartTime") {
+      else if (field == "StartTime")
+      {
         GlobalStore::GetEventStore()->Get(i)->SetStartTime(newValue);
       }
-      else if (field == "EndTime") {
+      else if (field == "EndTime")
+      {
         GlobalStore::GetEventStore()->Get(i)->SetEndTime(newValue);
       }
-      else if (field == "Name") {
+      else if (field == "Name")
+      {
         GlobalStore::GetEventStore()->Get(i)->SetName(newValue);
       }
-      else if (field == "Status") {
+      else if (field == "Status")
+      {
         GlobalStore::GetEventStore()->Get(i)->SetStatus(newValue);
       }
       break;
@@ -205,7 +226,9 @@ void Admin::ToEditEvent()
 
 void Admin::ToDeleteEvent()
 {
+  UI::PrintRow();
   UI::PrintTitle("Delete event action");
+  UI::PrintRow();
 
   std::string id;
 
@@ -236,20 +259,26 @@ void Admin::ToDeleteEvent()
 
 void Admin::ToPrintTickets()
 {
+  UI::PrintRow();
   UI::PrintTitle("Tickets");
+  UI::PrintRow();
 
   int length = GlobalStore::GetTicketStore()->GetSize();
 
   for (size_t index = 0; index < length; index++)
   {
     Ticket *ticket = GlobalStore::GetTicketStore()->Get(index);
-    UI::PrintTicketRow(ticket);
+    UI::PrintTicketTableRow(ticket);
   }
+
+  UI::PrintRow();
 }
 
 void Admin::ToAddTicket()
 {
+  UI::PrintRow();
   UI::PrintTitle("Add new ticket action");
+  UI::PrintRow();
 
   std::string row, name, place, customerId, eventId;
 
@@ -281,22 +310,28 @@ void Admin::ToEditTicket()
 {
   std::string ticketId, newCustomerId;
 
-  UI::PrintTitle("Edit ticket");                 
-  UI::EnterString("Which ticket to edit?: ", &ticketId);  
+  UI::PrintRow();
+  UI::PrintTitle("Edit ticket");
+  UI::PrintRow();
+  UI::EnterString("Which ticket to edit?: ", &ticketId);
   UI::EnterString("New customer for ticket: ", &newCustomerId);
 
-  for (size_t i = 0; i < GlobalStore::GetTicketStore()->GetSize(); i++) {
-    if (GlobalStore::GetTicketStore()->Get(i)->GetId() == ticketId) {
+  for (size_t i = 0; i < GlobalStore::GetTicketStore()->GetSize(); i++)
+  {
+    if (GlobalStore::GetTicketStore()->Get(i)->GetId() == ticketId)
+    {
       GlobalStore::GetTicketStore()->Get(i)->Booking(newCustomerId);
       break;
     }
-  }  
+  }
   std::cout << "Ticket success updated!" << std::endl;
 }
 
 void Admin::ToDeleteTicket()
 {
+  UI::PrintRow();
   UI::PrintTitle("Delete ticket action");
+  UI::PrintRow();
 
   std::string id;
 
@@ -310,7 +345,7 @@ void Admin::ToDeleteTicket()
     }
 
     if (GlobalStore::GetTicketStore()->ExistsById(id))
-    {      
+    {
       GlobalStore::GetTicketStore()->DeleteById(id);
       std::cout << "Ticket success deleted!" << std::endl;
       break;
@@ -322,7 +357,9 @@ void Admin::ToDeleteTicket()
 
 void Admin::ToDeleteTicketByEvent()
 {
+  UI::PrintRow();
   UI::PrintTitle("Delete all event tickets action");
+  UI::PrintRow();
 
   std::string eventId;
 
@@ -375,20 +412,26 @@ void Admin::ToCancelTicket()
 
 void Admin::ToPrintCustomers()
 {
+  UI::PrintRow();
   UI::PrintTitle("Customers");
+  UI::PrintRow();
 
   int length = GlobalStore::GetUserStore()->GetSize();
 
   for (size_t index = 0; index < length; index++)
   {
     User *user = GlobalStore::GetUserStore()->Get(index);
-    UI::PrintUserRow(user);
+    UI::PrintUserTableRow(user);
   }
+
+  UI::PrintRow();
 }
 
 void Admin::ToAddCustomer()
 {
+  UI::PrintRow();
   UI::PrintTitle("Add event customer action");
+  UI::PrintRow();
 
   std::string name, login, password;
 
@@ -404,19 +447,29 @@ void Admin::ToAddCustomer()
 void Admin::ToEditCustomer()
 {
   std::string field, newValue, id;
+
+  UI::PrintRow();
   UI::PrintTitle("Edit customer action\nField for edit: Name, Login, Password");
+  UI::PrintRow();
+
   UI::EnterString("Which cutomer to edit?: ", &id);
   UI::EnterString("Which field to edit?: ", &field);
   UI::EnterString("New value: ", &newValue);
-  for (size_t i = 0; i < GlobalStore::GetUserStore()->GetSize(); i++) {
-    if (GlobalStore::GetUserStore()->Get(i)->GetId() == id) {
-      if (field == "Name") {
+
+  for (size_t i = 0; i < GlobalStore::GetUserStore()->GetSize(); i++)
+  {
+    if (GlobalStore::GetUserStore()->Get(i)->GetId() == id)
+    {
+      if (field == "Name")
+      {
         GlobalStore::GetUserStore()->Get(i)->SetName(newValue);
       }
-      else if (field == "Login") {
+      else if (field == "Login")
+      {
         GlobalStore::GetUserStore()->Get(i)->SetLogin(newValue);
       }
-      else if (field == "Password") {
+      else if (field == "Password")
+      {
         GlobalStore::GetUserStore()->Get(i)->SetPassword(newValue);
       }
       break;
@@ -427,7 +480,9 @@ void Admin::ToEditCustomer()
 
 void Admin::ToDeleteCustomer()
 {
+  UI::PrintRow();
   UI::PrintTitle("Delete customer action");
+  UI::PrintRow();
 
   std::string id;
 
@@ -464,7 +519,9 @@ void Admin::ToDeleteCustomer()
 
 void Admin::ToClearEvents()
 {
+  UI::PrintRow();
   UI::PrintTitle("DANGER: clear events action");
+  UI::PrintRow();
 
   std::string answer;
 
@@ -481,7 +538,9 @@ void Admin::ToClearEvents()
 
 void Admin::ToClearTickets()
 {
+  UI::PrintRow();
   UI::PrintTitle("DANGER: clear ticket action");
+  UI::PrintRow();
 
   std::string answer;
 
@@ -497,7 +556,9 @@ void Admin::ToClearTickets()
 
 void Admin::ToClearCustomers()
 {
+  UI::PrintRow();
   UI::PrintTitle("DANGER: clear customers action");
+  UI::PrintRow();
 
   std::string answer;
 

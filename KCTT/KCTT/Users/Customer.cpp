@@ -29,7 +29,9 @@ void Customer::PrintMenu(char *action)
       "[e] Logout",
   };
 
+  UI::PrintRow();
   UI::PrintTitle("Welcome customer!");
+  UI::PrintRow();
   UI::PrintSimpleMenu(menu);
   std::cin >> *action;
 }
@@ -72,7 +74,9 @@ void Customer::ActivateMenu(char *action)
 
 void Customer::ToBuyTicket()
 {
+  UI::PrintRow();
   UI::PrintTitle("Buy a ticket");
+  UI::PrintRow();
 
   std::string ticketId;
 
@@ -106,7 +110,9 @@ void Customer::ToBuyTicket()
 
 void Customer::ToCancelTicket()
 {
+  UI::PrintRow();
   UI::PrintTitle("Cancel a ticket");
+  UI::PrintRow();
 
   std::string ticketId;
 
@@ -147,7 +153,9 @@ void Customer::ToCancelTicket()
 
 void Customer::ToFindEventByName()
 {
+  UI::PrintRow();
   UI::PrintTitle("Find an event");
+  UI::PrintRow();
 
   std::string name;
 
@@ -159,8 +167,10 @@ void Customer::ToFindEventByName()
   {
     for (int i = 0; i < founded.size(); i++)
     {
-      UI::PrintEventRow(founded[i]);
+      UI::PrintEventTableRow(founded[i]);
     }
+
+    UI::PrintRow();
   }
   else
   {
@@ -170,7 +180,9 @@ void Customer::ToFindEventByName()
 
 void Customer::ToFindEventByDate()
 {
+  UI::PrintRow();
   UI::PrintTitle("Find an event");
+  UI::PrintRow();
 
   std::string date;
 
@@ -182,8 +194,10 @@ void Customer::ToFindEventByDate()
   {
     for (int i = 0; i < founded.size(); i++)
     {
-      UI::PrintEventRow(founded[i]);
+      UI::PrintEventTableRow(founded[i]);
     }
+
+    UI::PrintRow();
   }
   else
   {
@@ -193,20 +207,26 @@ void Customer::ToFindEventByDate()
 
 void Customer::ToPrintAllEvents()
 {
+  UI::PrintRow();
   UI::PrintTitle("Available events");
+  UI::PrintRow();
 
   int length = GlobalStore::GetEventStore()->GetSize();
 
   for (size_t index = 0; index < length; index++)
   {
     Event *event = GlobalStore::GetEventStore()->Get(index);
-    UI::PrintEventRow(event);
+    UI::PrintEventTableRow(event);
   }
+
+  UI::PrintRow();
 }
 
 void Customer::ToPrintBoughtTickets()
 {
+  UI::PrintRow();
   UI::PrintTitle("Bought tickets");
+  UI::PrintRow();
 
   std::string userId = GlobalStore::GetAuthorizedUser()->GetId();
   std::vector<Ticket *> tickets =
@@ -216,8 +236,10 @@ void Customer::ToPrintBoughtTickets()
   {
     for (size_t index = 0; index < tickets.size(); index++)
     {
-      UI::PrintTicketRow(tickets[index]);
+      UI::PrintTicketTableRow(tickets[index]);
     }
+
+    UI::PrintRow();
   }
   else
   {

@@ -51,14 +51,18 @@ void select(char *select)
                                         "[2] About developers",
                                         "[e] Exit from program"};
 
+  UI::PrintRow();
   UI::PrintTitle("Boot Menu");
+  UI::PrintRow();
   UI::PrintSimpleMenu(boot_menu);
   std::cin >> *select;
 }
 
 void authorize()
 {
+  UI::PrintRow();
   UI::PrintTitle("Authorize Menu");
+  UI::PrintRow();
 
   for (int attempts = 1; attempts <= 3; attempts++)
   {
@@ -142,7 +146,9 @@ void about_dev()
       "______##_______######____##_______##____###_______###___",
       "  -------------------------------",
   };
+  UI::PrintRow();
   UI::PrintTitle("About Developers");
+  UI::PrintRow();
   UI::PrintSimpleMenu(show_devs);
   system("pause");
 }

@@ -10,8 +10,15 @@ class UI
 public:
   static void PrintTitle(std::string title);
   static void PrintSimpleMenu(std::vector<std::string> items);
-  static void PrintEventRow(Event *event);
-  static void PrintTicketRow(Ticket *ticket);
-  static void PrintUserRow(User *user);
+
+  static void PrintUsersTableTitle();
+  static void PrintEventsTableTitle();
+  static void PrintTicketsTableTitle();
+
+  static void PrintRow();
+  static void PrintUserTableRow(User *user);
+  static void PrintEventTableRow(Event *event);
+  static void PrintTicketTableRow(Ticket *ticket);
+
   static void EnterString(std::string title, std::string *string);
 };

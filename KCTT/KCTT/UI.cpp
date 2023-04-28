@@ -2,74 +2,107 @@
 #include "Stores/GlobalStore.h"
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 void UI::PrintTitle(std::string title)
 {
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
-  std::cout << std::setfill(' ');
-
-  std::cout << "| " << std::setw(64) << std::left << title << "|" << std::endl;
-
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
-  std::cout << std::setfill(' ');
+  std::cout << "| " << std::setw(66) << std::left << title << " |" << std::endl;
 }
 
 void UI::PrintSimpleMenu(std::vector<std::string> items)
 {
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
-  std::cout << std::setfill(' ');
+  UI::PrintRow();
 
   for (int i = 0; i < items.size(); i++)
   {
-    std::cout << "| " << std::setw(64) << std::left << items[i] << "|"
+    std::cout << "| " << std::setw(66) << std::left << items[i] << " |"
               << std::endl;
   }
 
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
+  UI::PrintRow();
+}
+
+void UI::PrintUsersTableTitle()
+{
+  std::cout << "| ";
+  std::cout << std::setw(6) << std::left << "Id";
+  std::cout << std::setw(20) << std::left << "Login";
+  std::cout << std::setw(22) << std::left << "Name";
+  std::cout << std::setw(19) << std::left << "Role";
+  std::cout << "|" << std::endl;
+}
+
+void UI::PrintEventsTableTitle()
+{
+  std::cout << "| ";
+  std::cout << std::setw(6) << std::left << "Id";
+  std::cout << std::setw(20) << std::left << "Name";
+  std::cout << std::setw(9) << std::left << "Status";
+  std::cout << std::setw(12) << std::left << "Date";
+  std::cout << std::setw(10) << std::left << "Start";
+  std::cout << std::setw(10) << std::left << "End";
+  std::cout << "|" << std::endl;
+}
+
+void UI::PrintTicketsTableTitle()
+{
+  std::cout << "| ";
+  std::cout << std::setw(6) << std::left << "Id";
+  std::cout << std::setw(10) << std::left << "Row";
+  std::cout << std::setw(10) << std::left << "Place";
+  std::cout << std::setw(19) << std::left << "Event";
+  std::cout << std::setw(22) << std::left << "Customer";
+  std::cout << "|" << std::endl;
+}
+
+void UI::PrintRow()
+{
+  std::cout << "|-" << std::setfill('-') << std::setw(66) << "-"
+            << "-|" << std::endl;
   std::cout << std::setfill(' ');
 }
 
-void UI::PrintEventRow(Event *event)
+void UI::PrintUserTableRow(User *user)
 {
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
-  std::cout << std::setfill(' ');
-
-  std::cout << "Event name: " << event->GetName() << std::endl
-            << "Event start: " << event->GetStartTime() << std::endl
-            << "Event end: " << event->GetEndTime() << std::endl
-            << "Event date: " << event->GetDate() << std::endl
-            << "Event status: " << event->GetStatus() << std::endl;
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
-  std::cout << std::setfill(' ');
+  std::cout << "| ";
+  std::cout << std::setw(6) << std::left << user->GetId();
+  std::cout << std::setw(20) << std::left << user->GetLogin();
+  std::cout << std::setw(22) << std::left << user->GetName();
+  std::cout << std::setw(19) << std::left << user->GetRole();
+  std::cout << "|" << std::endl;
 }
 
-void UI::PrintTicketRow(Ticket *ticket)
+void UI::PrintEventTableRow(Event *event)
 {
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
-  std::cout << std::setfill(' ');
-
-
-  std::string id = ticket->GetEventId();
-  std::cout << "Event name: " << GlobalStore::GetEventStore()->FindById(id)->GetName() << std::endl;
-
-  if (ticket->GetCustomerId().empty())
-    std::cout << "User: empty" << std::endl;
-  else
-    std::cout << "User: " << ticket->GetCustomerId() << std::endl;
-
-    std::cout << "Row: " << ticket->GetRow() << std::endl
-              << "Place: " << ticket->GetPlace() << std::endl
-              << "Is booked: " << ticket->IsBooked() << std::endl;
-  std::cout << std::setfill('-') << std::setw(67) << "-" << std::endl;
-  std::cout << std::setfill(' ');
+  std::cout << "| ";
+  std::cout << std::setw(6) << std::left << event->GetId();
+  std::cout << std::setw(20) << std::left << event->GetName();
+  std::cout << std::setw(9) << std::left << event->GetStatus();
+  std::cout << std::setw(12) << std::left << event->GetDate();
+  std::cout << std::setw(10) << std::left << event->GetStartTime();
+  std::cout << std::setw(10) << std::left << event->GetEndTime();
+  std::cout << "|" << std::endl;
 }
 
-void UI::PrintUserRow(User *user)
+void UI::PrintTicketTableRow(Ticket *ticket)
 {
-  std::cout << "-------------------------------------------------------------------" << std::endl;
-    std::cout << "Login: " << user->GetLogin() << std::endl
-              << "Name: " << user->GetName() << std::endl
-              << "Role: " << user->GetRole() << std::endl;
+  std::string eventId = ticket->GetEventId();
+  std::string customerId = ticket->GetCustomerId();
+  std::string customerName = "(empty)";
+  Event *event = GlobalStore::GetEventStore()->FindById(eventId);
+
+  if (!customerId.empty())
+  {
+    customerName = GlobalStore::GetUserStore()->FindById(customerId)->GetName();
+  }
+
+  std::cout << "| ";
+  std::cout << std::setw(6) << std::left << ticket->GetId();
+  std::cout << std::setw(10) << std::left << ticket->GetRow();
+  std::cout << std::setw(10) << std::left << ticket->GetPlace();
+  std::cout << std::setw(19) << std::left << event->GetName();
+  std::cout << std::setw(22) << std::left << customerName;
+  std::cout << "|" << std::endl;
 }
 
 void UI::EnterString(std::string title, std::string *string)
