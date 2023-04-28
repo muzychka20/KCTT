@@ -15,6 +15,7 @@ void about_dev();
 
 int main()
 {
+  UI::SetWindowFont(16);
   UI::SetWindowSize(555, 600);
   UI::DisableWindowScrollbar();
 

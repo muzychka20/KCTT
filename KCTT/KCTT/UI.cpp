@@ -115,6 +115,19 @@ void UI::EnterString(std::string title, std::string *string)
   } while (string->length() == 0);
 }
 
+void UI::SetWindowFont(int size)
+{
+  CONSOLE_FONT_INFOEX cfi;
+  cfi.cbSize = sizeof(cfi);
+  cfi.nFont = 0;
+  cfi.dwFontSize.X = 0;    // Width of each character in the font
+  cfi.dwFontSize.Y = size; // Height
+  cfi.FontFamily = FF_DONTCARE;
+  cfi.FontWeight = FW_NORMAL;
+  std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
+  SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+}
+
 void UI::SetWindowSize(int width, int height)
 {
   HWND hwndConsole = GetConsoleWindow();
