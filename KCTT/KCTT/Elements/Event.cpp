@@ -9,9 +9,9 @@ Event::Event(std::string name, std::string date, std::string startTime,
   eid++;
   this->id = "e" + std::to_string(eid);
   this->name = name;
+  this->date = date;
   this->startTime = startTime;
   this->endTime = endTime;
-  this->date = date;
   this->status = "opened";
 }
 
@@ -45,27 +45,27 @@ std::string Event::GetEndTime()
   return this->endTime;
 }
 
-void Event::SetName(std::string name)
+void Event::SetName(std::string newName)
 {
-  this->name = name;
+  this->name = newName;
 }
 
-void Event::SetDate(std::string date)
+void Event::SetDate(std::string newDate)
 {
-  this->date = date;
+  this->date = newDate;
 }
 
-void Event::SetStatus(std::string status)
+void Event::SetStatus(std::string newStatus)
 {
-  this->status = status;
+  this->status = newStatus;
 }
 
-void Event::SetStartTime(std::string endTime)
+void Event::SetStartTime(std::string newStartTime)
 {
-  this->endTime = endTime;
+  this->endTime = newStartTime;
 }
 
-void Event::SetEndTime(std::string startTime)
+void Event::SetEndTime(std::string newEndTime)
 {
-  this->startTime = startTime;
+  this->startTime = newEndTime;
 }

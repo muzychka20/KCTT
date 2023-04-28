@@ -38,30 +38,6 @@ void TicketStore::DeleteById(std::string id)
   }
 }
 
-void TicketStore::DeleteByRow(std::string row)
-{
-  for (size_t index = 0; index < this->GetSize(); index++)
-  {
-    if (this->ticket[index]->GetRow() == row)
-    {
-      this->Delete(index);
-      break;
-    }
-  }
-}
-
-void TicketStore::DeleteByPlace(std::string place)
-{
-  for (size_t index = 0; index < this->GetSize(); index++)
-  {
-    if (this->ticket[index]->GetPlace() == place)
-    {
-      this->Delete(index);
-      break;
-    }
-  }
-}
-
 void TicketStore::DeleteByEventId(std::string eventId)
 {
   for (size_t index = 0; index < this->GetSize(); index++)
@@ -115,66 +91,6 @@ Ticket *TicketStore::FindById(std::string id)
   }
 
   return nullptr;
-}
-
-std::vector<Ticket *> TicketStore::FindByRow(std::string row)
-{
-  std::vector<Ticket *> found;
-
-  for (size_t index = 0; index < this->GetSize(); index++)
-  {
-    if (this->ticket[index]->GetRow() == row)
-    {
-      found.push_back(this->ticket[index]);
-    }
-  }
-
-  return found;
-}
-
-std::vector<Ticket *> TicketStore::FindByPlace(std::string place)
-{
-  std::vector<Ticket *> found;
-
-  for (size_t index = 0; index < this->GetSize(); index++)
-  {
-    if (this->ticket[index]->GetPlace() == place)
-    {
-      found.push_back(this->ticket[index]);
-    }
-  }
-
-  return found;
-}
-
-std::vector<Ticket *> TicketStore::FindByEventId(std::string eventId)
-{
-  std::vector<Ticket *> found;
-
-  for (size_t index = 0; index < this->GetSize(); index++)
-  {
-    if (this->ticket[index]->GetEventId() == eventId)
-    {
-      found.push_back(this->ticket[index]);
-    }
-  }
-
-  return found;
-}
-
-std::vector<Ticket *> TicketStore::FindByCustomerId(std::string customerId)
-{
-  std::vector<Ticket *> found;
-
-  for (size_t index = 0; index < this->GetSize(); index++)
-  {
-    if (this->ticket[index]->GetCustomerId() == customerId)
-    {
-      found.push_back(this->ticket[index]);
-    }
-  }
-
-  return found;
 }
 
 std::vector<Ticket *> TicketStore::Filter(TicketStore::TicketStoreFilter filter)
