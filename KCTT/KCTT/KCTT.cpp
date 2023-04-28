@@ -139,7 +139,7 @@ void about_dev()
       "  -------------------------------",
       "      |  Kyrylo_Muzychka  |",
       "      |   Denis_Stratii   |",
-      "      |   Rodion_Bojok    |",
+      "      |   Rodion_Bozhok    |",
       "      |  Olga_Kostrenko   |",
       "      |  Dmitry_Tavern    |",
       "  -------------------------------",
