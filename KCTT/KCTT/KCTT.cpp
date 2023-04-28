@@ -15,6 +15,9 @@ void about_dev();
 
 int main()
 {
+  UI::SetWindowSize(555, 600);
+  UI::DisableWindowScrollbar();
+
   GlobalStore::InitUsersStore();
   GlobalStore::InitEventStore();
   GlobalStore::InitTicketStore();

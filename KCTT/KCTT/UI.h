@@ -21,4 +21,7 @@ public:
   static void PrintTicketTableRow(Ticket *ticket);
 
   static void EnterString(std::string title, std::string *string);
+
+  static void SetWindowSize(int width, int height);
+  static void DisableWindowScrollbar();
 };

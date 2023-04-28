@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <windows.h>
 
 void UI::PrintTitle(std::string title)
 {
@@ -112,4 +113,41 @@ void UI::EnterString(std::string title, std::string *string)
     std::cout << title;
     std::cin >> *string;
   } while (string->length() == 0);
+}
+
+void UI::SetWindowSize(int width, int height)
+{
+  HWND hwndConsole = GetConsoleWindow();
+  RECT rectConsole;
+  GetWindowRect(hwndConsole, &rectConsole);
+
+  HWND hwndScreen = GetDesktopWindow();
+  RECT rectScreen;
+  GetWindowRect(hwndScreen, &rectScreen);
+
+  int ConsolePosX = ((rectScreen.right - rectScreen.left) / 2 - width / 2);
+  int ConsolePosY = ((rectScreen.bottom - rectScreen.top) / 2 - height / 2);
+
+  MoveWindow(hwndConsole, ConsolePosX, ConsolePosY, width, height, TRUE);
+}
+
+void UI::DisableWindowScrollbar()
+{
+  HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+  CONSOLE_SCREEN_BUFFER_INFO scrBufferInfo;
+  GetConsoleScreenBufferInfo(hOut, &scrBufferInfo);
+
+  short winWidth =
+      scrBufferInfo.srWindow.Right - scrBufferInfo.srWindow.Left + 1;
+  short winHeight =
+      scrBufferInfo.srWindow.Bottom - scrBufferInfo.srWindow.Top + 1;
+  short scrBufferWidth = scrBufferInfo.dwSize.X;
+  short scrBufferHeight = scrBufferInfo.dwSize.Y;
+
+  COORD newSize;
+  newSize.X = scrBufferWidth;
+  newSize.Y = winHeight;
+
+  SetConsoleScreenBufferSize(hOut, newSize);
 }
