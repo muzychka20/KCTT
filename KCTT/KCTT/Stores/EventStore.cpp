@@ -44,7 +44,7 @@ void EventStore::DeleteByName(std::string name)
     if (this->events[index]->GetName() == name)
     {
       this->Delete(index);
-      break;
+      index--;
     }
   }
 }
@@ -56,7 +56,7 @@ void EventStore::DeleteByDate(std::string date)
     if (this->events[index]->GetDate() == date)
     {
       this->Delete(index);
-      break;
+      index--;
     }
   }
 }

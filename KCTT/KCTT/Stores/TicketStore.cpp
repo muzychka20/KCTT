@@ -45,7 +45,7 @@ void TicketStore::DeleteByEventId(std::string eventId)
     if (this->ticket[index]->GetEventId() == eventId)
     {
       this->Delete(index);
-      break;
+      index--;
     }
   }
 }
@@ -57,7 +57,7 @@ void TicketStore::DeleteByCustomerId(std::string customerId)
     if (this->ticket[index]->GetCustomerId() == customerId)
     {
       this->Delete(index);
-      break;
+      index--;
     }
   }
 }
