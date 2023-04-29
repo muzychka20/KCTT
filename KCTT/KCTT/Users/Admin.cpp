@@ -317,24 +317,46 @@ void Admin::ToAddTicket()
 
 void Admin::ToEditTicket()
 {
-  std::string ticketId, newCustomerId;
+  std::string ticketId, customerId;
+
+  UserStore *userStore = GlobalStore::GetUserStore();
+  TicketStore *ticketStore = GlobalStore::GetTicketStore();
 
   UI::PrintRow();
   UI::PrintTitle("Edit ticket");
   UI::PrintRow();
 
-  UI::EnterString("Which ticket to edit?: ", &ticketId);
-  UI::EnterString("New customer for ticket: ", &newCustomerId);
-
-  for (size_t i = 0; i < GlobalStore::GetTicketStore()->GetSize(); i++)
+  do
   {
-    if (GlobalStore::GetTicketStore()->Get(i)->GetId() == ticketId)
+    UI::EnterString("Enter ticket id for edit:  ", &ticketId);
+    UI::EnterString("Enter new customer id: ", &customerId);
+
+    if (customerId == "-" || ticketId == "-")
     {
-      GlobalStore::GetTicketStore()->Get(i)->Booking(newCustomerId);
       break;
     }
-  }
-  std::cout << "Ticket success updated!" << std::endl;
+
+    if (ticketStore->ExistsById(ticketId))
+    {
+      if (userStore->ExistsById(customerId))
+      {
+        if (userStore->FindById(customerId)->GetRole() == "Customer")
+        {
+          ticketStore->FindById(ticketId)->Booking(customerId);
+          std::cout << "Ticket success updated!" << std::endl;
+          break;
+        }
+
+        std::cout << "This user is admin." << std::endl;
+        continue;
+      }
+
+      std::cout << "Customer not found." << std::endl;
+      continue;
+    }
+
+    std::cout << "Ticket not found." << std::endl;
+  } while (true);
 }
 
 void Admin::ToDeleteTicket()
