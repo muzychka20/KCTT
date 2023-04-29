@@ -151,6 +151,7 @@ void Admin::ToPrintEvents()
 {
   UI::PrintRow();
   UI::PrintTitle("Events");
+  UI::PrintEventsTableTitle();
   UI::PrintRow();
 
   int length = GlobalStore::GetEventStore()->GetSize();
@@ -262,6 +263,7 @@ void Admin::ToPrintTickets()
 {
   UI::PrintRow();
   UI::PrintTitle("Tickets");
+  UI::PrintTicketsTableTitle();
   UI::PrintRow();
 
   int length = GlobalStore::GetTicketStore()->GetSize();
@@ -452,6 +454,7 @@ void Admin::ToPrintCustomers()
 {
   UI::PrintRow();
   UI::PrintTitle("Customers");
+  UI::PrintUsersTableTitle();
   UI::PrintRow();
 
   int length = GlobalStore::GetUserStore()->GetSize();
