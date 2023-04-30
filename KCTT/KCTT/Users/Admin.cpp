@@ -487,36 +487,48 @@ void Admin::ToAddCustomer()
 
 void Admin::ToEditCustomer()
 {
-  std::string field, newValue, id;
+  std::string field, newValue, customerId;
+
+  UserStore *userStore = GlobalStore::GetUserStore();
 
   UI::PrintRow();
-  UI::PrintTitle("Edit customer action\nField for edit: Name, Login, Password");
+  UI::PrintTitle("Edit user action\nField for edit: Name, Login, Password");
   UI::PrintRow();
 
-  UI::EnterString("Which cutomer to edit?: ", &id);
-  UI::EnterString("Which field to edit?: ", &field);
-  UI::EnterString("New value: ", &newValue);
-
-  for (size_t i = 0; i < GlobalStore::GetUserStore()->GetSize(); i++)
+  do
   {
-    if (GlobalStore::GetUserStore()->Get(i)->GetId() == id)
+    UI::EnterString("Enter user id: ", &customerId);
+    UI::EnterString("Which field to edit?: ", &field);
+    UI::EnterString("New value: ", &newValue);
+
+    if (customerId == "-" || field == "-")
     {
+      break;
+    }
+
+    if (userStore->ExistsById(customerId))
+    {
+      User *user = userStore->FindById(customerId);
+
       if (field == "Name")
       {
-        GlobalStore::GetUserStore()->Get(i)->SetName(newValue);
+        user->SetName(newValue);
       }
       else if (field == "Login")
       {
-        GlobalStore::GetUserStore()->Get(i)->SetLogin(newValue);
+        user->SetLogin(newValue);
       }
       else if (field == "Password")
       {
-        GlobalStore::GetUserStore()->Get(i)->SetPassword(newValue);
+        user->SetPassword(newValue);
       }
+
+      std::cout << "User success updated!" << std::endl;
       break;
     }
-  }
-  std::cout << "Customer success updated!" << std::endl;
+
+    std::cout << "User not found." << std::endl;
+  } while (true);
 }
 
 void Admin::ToDeleteCustomer()
