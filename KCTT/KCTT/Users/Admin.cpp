@@ -550,7 +550,7 @@ void Admin::ToDeleteCustomer()
 
     if (GlobalStore::GetUserStore()->ExistsById(id))
     {
-      if (GlobalStore::GetUserStore()->FindById(id)->GetRole() == "customer")
+      if (GlobalStore::GetUserStore()->FindById(id)->GetRole() == "Customer")
       {
         GlobalStore::GetUserStore()->DeleteById(id);
         std::cout << "Customer success deleted!" << std::endl;
@@ -558,12 +558,11 @@ void Admin::ToDeleteCustomer()
       }
 
       std::cout << "User with id: " << id << " is not customer." << std::endl;
+      continue;
     }
 
     std::cout << "Customer with id: " << id << " not found." << std::endl;
   } while (true);
-
-  std::cout << "Customer success deleted!" << std::endl;
 }
 
 /*-------------------------------------------------------------------
