@@ -1,1 +1,0 @@
-import{_ as e,c as t,o}from"./chunks/framework.3ec6c483.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"api/stores/global-store.md"}'),a={name:"api/stores/global-store.md"};function r(s,c,n,p,l,i){return o(),t("div")}const m=e(a,[["render",r]]);export{d as __pageData,m as default};
