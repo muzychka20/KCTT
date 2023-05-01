@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as r,O as t}from"./chunks/framework.3ec6c483.js";const b=JSON.parse('{"title":"Архітектурні рішення","description":"","frontmatter":{},"headers":[],"relativePath":"guide/architecture.md"}'),o={name:"guide/architecture.md"},i=t("",19),h=[i];function l(n,s,c,d,p,u){return r(),e("div",null,h)}const m=a(o,[["render",l]]);export{b as __pageData,m as default};

@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as i,O as a}from"./chunks/framework.3ec6c483.js";const m=JSON.parse('{"title":"KCTT API","description":"","frontmatter":{},"headers":[],"relativePath":"api/index.md"}'),l={name:"api/index.md"},r=a("",2),s=[r];function p(o,c,T,n,h,u){return i(),t("div",null,s)}const d=e(l,[["render",p]]);export{m as __pageData,d as default};
