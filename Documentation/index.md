@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "Keep Calm & Take Tickets"
-  text: "Приобрети опыт работы в команде и C++."
+  text: "Придбай досвід роботи в команді та C++."
   actions:
     - theme: brand
       text: Введение
