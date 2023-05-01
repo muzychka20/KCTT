@@ -1,8 +1,8 @@
 import { defineConfig } from "vitepress";
 
 export const nav = [
-  { text: "Home", link: "/" },
-  { text: "Guide", link: "/guide/what-is-kctt" },
+  { text: "Головна", link: "/" },
+  { text: "Посібник", link: "/guide/what-is-kctt" },
   { text: "API", link: "/api/" },
 ];
 
@@ -11,16 +11,15 @@ export const sidebar = {
     {
       text: "Введение",
       items: [
-        { text: "Что такое KCTT?", link: "/guide/what-is-kctt" },
+        { text: "Що таке KCTT?", link: "/guide/what-is-kctt" },
         { text: "Установка", link: "/guide/installation" },
       ],
     },
     {
-      text: "Об проекте",
+      text: "Про проект",
       items: [
-        { text: "Начало", link: "/guide/get-started" },
-        { text: "Архитектура", link: "/guide/architecture" },
-        { text: "Скриншоты", link: "/guide/screenshots" },
+        { text: "Архітектура", link: "/guide/architecture" },
+        { text: "Скріншоти", link: "/guide/screenshots" },
       ],
     },
   ],
@@ -59,7 +58,7 @@ export const sidebar = {
 export default defineConfig({
   base: "/KCTT",
   title: "Keep Calm & Take Tickets",
-  description: "The university's OOP project is designed to gain experience in teamwork.",
+  description: "Університетський проект ООП спрямований на отримання досвіду командної роботи.",
   themeConfig: {
     nav,
     sidebar,
