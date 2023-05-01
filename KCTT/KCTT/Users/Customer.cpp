@@ -194,7 +194,7 @@ void Customer::ToFindEventByDate()
 
   std::string date;
 
-  UI::EnterString("Enter the name of the event: ", &date);
+  UI::EnterString("Enter the date of the event: ", &date);
 
   std::vector<Event *> founded = GlobalStore::GetEventStore()->FindByDate(date);
 
