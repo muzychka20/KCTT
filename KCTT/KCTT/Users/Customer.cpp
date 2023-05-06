@@ -5,6 +5,7 @@
 #include "../Stores/GlobalStore.h"
 #include "../Stores/TicketStore.h"
 #include "../UI.h"
+#include <cstdlib>
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -165,6 +166,13 @@ void Customer::ToFindEventByName()
 
   if (!founded.empty())
   {
+    system("cls");
+
+    UI::PrintRow();
+    UI::PrintTitle("Events (" + std::to_string(founded.size()) + " found)");
+    UI::PrintEventsTableTitle();
+    UI::PrintRow();
+
     for (int i = 0; i < founded.size(); i++)
     {
       UI::PrintEventTableRow(founded[i]);
@@ -186,12 +194,19 @@ void Customer::ToFindEventByDate()
 
   std::string date;
 
-  UI::EnterString("Enter the name of the event: ", &date);
+  UI::EnterString("Enter the date of the event: ", &date);
 
   std::vector<Event *> founded = GlobalStore::GetEventStore()->FindByDate(date);
 
   if (!founded.empty())
   {
+    system("cls");
+
+    UI::PrintRow();
+    UI::PrintTitle("Events (" + std::to_string(founded.size()) + " found)");
+    UI::PrintEventsTableTitle();
+    UI::PrintRow();
+
     for (int i = 0; i < founded.size(); i++)
     {
       UI::PrintEventTableRow(founded[i]);
@@ -209,6 +224,7 @@ void Customer::ToPrintAllEvents()
 {
   UI::PrintRow();
   UI::PrintTitle("Available events");
+  UI::PrintEventsTableTitle();
   UI::PrintRow();
 
   int length = GlobalStore::GetEventStore()->GetSize();
@@ -224,16 +240,17 @@ void Customer::ToPrintAllEvents()
 
 void Customer::ToPrintBoughtTickets()
 {
-  UI::PrintRow();
-  UI::PrintTitle("Bought tickets");
-  UI::PrintRow();
-
   std::string userId = GlobalStore::GetAuthorizedUser()->GetId();
   std::vector<Ticket *> tickets =
       GlobalStore::GetTicketStore()->Filter({.customerId = userId});
 
   if (tickets.size() > 0)
   {
+    UI::PrintRow();
+    UI::PrintTitle("Tickets (" + std::to_string(tickets.size()) + " found)");
+    UI::PrintTicketsTableTitle();
+    UI::PrintRow();
+
     for (size_t index = 0; index < tickets.size(); index++)
     {
       UI::PrintTicketTableRow(tickets[index]);
@@ -243,6 +260,10 @@ void Customer::ToPrintBoughtTickets()
   }
   else
   {
+    UI::PrintRow();
+    UI::PrintTitle("Bought tickets not found.");
+    UI::PrintRow();
+
     std::cout << "No tickets have been ordered yet." << std::endl;
   }
 }

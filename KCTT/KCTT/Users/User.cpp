@@ -9,7 +9,7 @@ int uid = 0;
 User::User(std::string name, std::string login, std::string password)
 {
   uid++;
-  this->id = "t" + std::to_string(uid);
+  this->id = "u" + std::to_string(uid);
   this->name = name;
   this->login = login;
   this->password = password;

@@ -32,7 +32,7 @@ void UserStore::DeleteAllCustomers()
     if (this->users[index]->GetRole() == "customer")
     {
       this->Delete(index);
-      break;
+      index--;
     }
   }
 }
@@ -44,7 +44,7 @@ void UserStore::DeleteById(std::string id)
     if (this->users[index]->GetId() == id)
     {
       this->Delete(index);
-      break;
+      index--;
     }
   }
 }

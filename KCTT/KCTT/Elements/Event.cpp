@@ -62,10 +62,10 @@ void Event::SetStatus(std::string newStatus)
 
 void Event::SetStartTime(std::string newStartTime)
 {
-  this->endTime = newStartTime;
+  this->startTime = newStartTime;
 }
 
 void Event::SetEndTime(std::string newEndTime)
 {
-  this->startTime = newEndTime;
+  this->endTime = newEndTime;
 }
